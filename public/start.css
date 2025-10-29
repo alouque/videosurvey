@@ -1,0 +1,76 @@
+/* Page layout */
+#start-screen {
+  max-width: 700px;
+  margin: 5vh auto;
+  padding: 2rem 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+}
+
+/* Headings */
+#start-screen h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+#start-screen h2 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/* Intro text */
+#start-screen p {
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* Rules list */
+#start-screen ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+#start-screen li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Actions section */
+.start-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#start-screen input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 280px;
+}
+
+#startBtn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#startBtn:hover {
+  background: #357abd;
+}
