@@ -1,0 +1,14 @@
+#start-screen .intro {
+  margin-bottom: 1rem; /* mb-8 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-4 */
+}
+
+#start-screen .start-actions {
+  text-align: center;
+}
+
+#start-screen .start-actions button {
+  margin-top: 0.5rem; /* mt-4 */
+}
