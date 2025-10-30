@@ -1,0 +1,114 @@
+id,Prompt,Who made it,Category,"Green indicates generated; if not green, please generate.",C,Human
+0,A whale breaching the ocean surface,Lao,Animal,A rocket launching into space,A meteor blazing through the atmosphere,A breakdancer spinning on their head under neon lights
+1,A roller coaster plummeting down a steep track,Lao,Instrument,A whale breaching the ocean surface,A panther stalking silently through the jungle,A sprinter exploding out of the starting blocks
+2,A kangaroo bounding across the outback,Lao,Animal,A tornado spinning wildly across a plain,A helicopter lifting off from a helipad,A firefighter rushing through smoke with a hose
+3,A rocket launching into space,Lao,Instrument,A cheetah sprinting across the savannah,A lava flow creeping down a mountainside,A diver leaping gracefully from a high platform
+4,A phoenix rising from ashes,Lao,Animal,A falcon diving at incredible speed,A peregrine falcon swooping toward the ground,A boxer dodging a punch and countering in slow motion
+5,A fire ant army marching,Lao,Animal,A dolphin leaping through waves,A wave crashing against jagged rocks,A ballet dancer spinning on pointe in a spotlight
+6,A horse leaping a wooden fence,Lao,Animal,A volcano erupting molten lava,A thunderbolt splitting the night sky,A surfer carving a perfect wave at sunrise
+7,A deer leaping over a fallen log,Hijazi,Animal,A kangaroo bounding across the outback,A lion roaring atop a rocky ledge,A martial artist delivering a flying kick midair
+8,A cheetah sprinting across the savannah,Hijazi,Animal,A skateboarder grinding a rail,A satellite deploying solar panels in orbit,A construction worker welding sparks under a bridge
+9,A scateboarder grinding a rail,Hijazi,Human,A hummingbird hovering rapidly,A train speeding across a bridge,A skateboarder grinding down a city rail
+10,A tornado spinning wildly across a plain,Whitfield,Nature,A shark propelling itself through water,A geyser steaming before erupting,A rock climber hanging by one hand on a cliff face
+11,A spaceship entering hyperspace,Whitfield,Instrument,A jet plane banking sharply,A snowstorm swirling over a mountain peak,A football player leaping to catch a pass midair
+12,A snake striking at prey,Whitfield,Animal,A surfer riding a massive wave,A leopard lunging at its prey,A conductor guiding an orchestra with intense focus
+13,A surfer riding a massive wave,Hijazi,Human,A spider weaving a web swiftly,A dolphin spinning through the air,A drummer striking cymbals in a burst of motion
+14,A spider weaving a web swiftly,Hijazi,Animal,A deer leaping over a fallen log,A volcano glowing with molten magma,A cyclist sprinting up a mountain road
+15,A boxer throwing a powerful punch,Hijazi,Human,A roller coaster plummeting down a steep track,A kite soaring in strong winds,A chef tossing flaming food in a pan
+16,A mantis shrimp striking with lightning speed,Whitfield,Animal,A spaceship entering hyperspace,A skier launching off a cliff edge,A gymnast flipping across a balance beam
+17,A waterfall crashing down a cliff,Whitfield,Nature,A dragonfly zipping over a pond,A cobra flaring its hood,A dancer performing a powerful hip-hop move
+18,A squirrel leaping from tree to tree,Whitfield,Animal,A boxer throwing a powerful punch,A chameleon flicking its tongue,A fencer lunging forward with lightning speed
+19,A dragonfly zipping over a pond,Louque,Animal,A stallion rearing up and kicking,A racecar accelerating off the starting line,A soccer player curving a free kick toward goal
+20,A race car zooming on a track,Louque,Instrument,A geyser erupting hot water into the air,A wolf howling under a full moon,A basketball player dunking over defenders
+21,A hammer striking a nail,Louque,Instrument,A snake striking at prey,A waterfall misting over a canyon,A boxer jumping rope in a dimly lit gym
+22,A firework exploding in the sky,Louque,Instrument,A squirrel darting between tree branches,A space capsule re-entering Earth's atmosphere,A parkour athlete vaulting between rooftops
+23,A lightning bolt striking a tree,Louque,Nature,A car drifting on a wet road,A falcon gliding over open desert,A firefighter carrying a person out of a burning building
+24,A wolf pack running through snow,Whitfield,Animal,A jellyfish pulsating gracefully in water,A manta ray gliding through blue depths,A swimmer breaking the surface after a long dive
+25,A dolphin leaping through waves,Lao,Animal,A volcano sending ash into the sky,A thundercloud flashing with lightning,A violinist playing passionately on stage
+26,A python constricting its prey,Whitfield,Animal,A catapult launching a projectile,A jet engine roaring to life,A snowboarder twisting midair during a jump
+27,A falcon catching prey mid-flight,Whitfield,Animal,A jet ski speeding across a lake,A snow avalanche tumbling down a slope,A soldier parachuting through clouds
+28,A volcano sending ash into the sky,Louque,Nature,A waterfall crashing down a cliff,A hummingbird sipping nectar mid-air,A rower pulling in sync with teammates at dawn
+29,A jet ski speeding across a lake,Louque,Instrument,A hummingbird darting between flowers,A rocket exploding out of its launch pad flames,A track runner crossing the finish line in victory
+30,A pelican diving for fish,Louque,Animal ,A submarine surfacing rapidly,A stallion galloping through a meadow,A yoga practitioner holding a perfect handstand
+31,A stallion rearing up and kicking,Whitfield,Animal ,A comet streaking across the night sky,A hawk locking onto its target,A stunt driver drifting around a corner
+32,A jet plane banking sharply,Whitfield,Instrument,A wolf pack running through snow,A tornado ripping through a town,A dancer moving through a spotlight’s circle on stage
+33,A catapult launching a projectile,Hijazi,Instrument,A wind turbine spinning in strong gusts,A spaceship igniting thrusters in orbit,A javelin thrower releasing with explosive power
+34,A jellyfish pulsating gracefully in water,Hijazi,Animal,A parrot flapping its colorful wings,A glacier grinding against bedrock,A photographer kneeling to capture a perfect shot
+35,A geyser erupting hot water into the air,Hijazi,Nature,A skier carving through fresh powder,A shark slicing through a school of fish,A boxer training on a heavy bag with sweat flying
+36,A hummingbird darting between flowers,Hijazi,Animal,A lioness pouncing on prey,A spacecraft docking with a space station,A mountaineer planting a flag on a snowy peak
+37,A squirrel darting between tree branches,Whitfield,Animal,A race car zooming on a track,A thunderhead rolling over the horizon,A musician shredding an electric guitar solo
+38,A car drifting on a wet road,Whitfield,Instrument,A squirrel leaping from tree to tree,A horse leaping a wooden fence,A pilot climbing into a fighter jet cockpit
+39,A hummingbird flicking its wings rapidly,Whitfield,Animal,A hammer striking a nail,A pelican gliding low over the waves,A firefighter breaking down a door with an axe
+40,A dragon breathing fire,Hijazi,Animal,A lightning bolt striking a tree,A leopard sprinting through tall grass,A dancer twirling a long silk ribbon midair
+41,A spider leaping to catch a fly,Hijazi,Animal,A dragon breathing fire,A waterfall pounding rocks below,A gymnast landing a perfect dismount
+42,A spacecraft landing on Mars,Louque,Instrument,A firework exploding in the sky,A volcano spitting glowing embers,A runner splashing through puddles in heavy rain
+43,A spaceship launching a probe,Louque,Instrument,A pelican diving for fish,A cheetah crouching before a chase,A boxer raising their gloves in victory
+44,A speedboat racing across water,Louque,Instrument,A butterfly fluttering among flowers,A fighter jet roaring across the sky,A surfer wiping out and rising from the foam
+45,A cheetah twisting mid-run,Whitfield,Animal,A submarine diving deep underwater,A mountain goat scaling a steep cliff,A skier racing down a narrow slope
+46,A rocket booster separating mid-flight,Whitfield,Instrument,A rocket sled speeding along a track,A falcon perching after a hunt,A dancer performing a flamenco stomp on stage
+47,A bumblebee buzzing between flowers,Whitfield,Animal,A spider leaping to catch a fly,A hurricane spinning over the ocean,A marathon runner pushing through exhaustion
+48,A snowboarder jumping off a ramp,Hijazi,Human,A fighter jet breaking the sound barrier,A rocket separating its final stage,A stunt performer leaping from a moving vehicle
+49,A bison charging across the plains,Hijazi,Animal,A snowboarder jumping off a ramp,A lioness leading her cubs through tall grass,A singer belting out a note under bright stage lights
+50,A waterwheel turning in a river,Hijazi,Instrument,A whale tail slapping the ocean surface,,
+51,A rocket landing vertically on a platform,Louque,Instrument,A bison charging across the plains,,
+52,A sea turtle swimming powerfully through waves,Louque,Animal,A glacier calving into the sea,,
+53,A mountain biker flying over a jump,Louque,Human,A hummingbird flicking its wings rapidly,,
+54,A racehorse thundering down a track,Whitfield,Animal,A tornado lifting debris into the air,,
+55,A hawk diving towards the ground,Whitfield,Animal,A gazelle bounding over the grasslands,,
+56,A cobra flaring its hood,Whitfield,Animal,A spacecraft landing on Mars,,
+57,A horse rearing up wildly,Louque,Animal,A waterwheel turning in a river,,
+58,A scorpion snapping its claws,Louque,Animal,A storm cloud swirling violently,,
+59,A volcano erupting molten lava,Louque,Nature,A fire spreading quickly through a forest,,
+60,A dragonfly skimming over water,Whitfield,Animal,A mantis shrimp striking with lightning speed,,
+61,A fire spreading quickly through a forest,Whitfield,Nature,A sea turtle swimming powerfully through waves,,
+62,A mountain goat scaling a steep cliff,Whitfield,Animal,A spaceship launching a probe,,
+63,A tornado swirling dust and debris,Whitfield,Nature,A python constricting its prey,,
+64,A whale spouting water from its blowhole,Whitfield,Animal,A thunderstorm rolling over mountains,,
+65,A falcon chasing a pigeon,Whitfield,Animal,A racehorse thundering down a track,,
+66,A hummingbird hovering rapidly,Louque,Animal,A falcon catching prey mid-flight,,
+67,A submarine surfacing rapidly,Louque,Instrument,A speedboat racing across the water,,
+68,A comet streaking across the night sky,Louque,Nature,A phoenix rising from ashes,,
+69,A butterfly fluttering among flowers,Whitfield,Animal,A horse rearing up wildly,,
+70,A wind turbine spinning in strong gusts,Whitfield,Nature,A scorpion snapping its claws,,
+71,A parrot flapping its colorful wings,Whitfield,Animal,A drone zipping through a forest,,
+72,A drone zipping through a forest,Hijazi,Instrument,A tornado touching down in a field,,
+73,A submarine launching a missile,Hijazi,Instrument,A river rapidly flooding a valley,,
+74,A lightning storm illuminating the sky,Hijazi,Nature,A fire ant army marching,,
+75,A racecar making a tight turn,Hijazi,Instrument,A submarine launching a missile,,
+76,A skier carving through fresh powder,Louque,Human,A comet blazing through space,,
+77,A lioness pouncing on prey,Louque,Animal,A condor soaring over mountains,,
+78,A submarine diving deep underwater,Louque,Instrument,A mountain biker flying over a jump,,
+79,A snow leopard sprinting up a rocky slope,Louque,Animal,A hawk diving towards the ground,,
+80,A waterfall cascading into a pool,Louque,Nature,A lightning storm illuminating the sky,,
+81,A shark breaching to catch a seal,Louque,Animal,A whale spouting water from its blowhole,,
+82,A rocket sled speeding along a track,Whitfield,Instrument,A cheetah twisting mid-run,,
+83,A fighter jet breaking the sound barrier,Whitfield,Instrument,A glider soaring silently in the sky,,
+84,A hawk flapping its wings powerfully,Hijazi,Animal,A horse sprinting across a beach,,
+85,A river rapidly flooding a valley,Hijazi,Nature,A caterpillar transforming into a butterfly,,
+86,A whale tail slapping the ocean surface,Louque,Animal,A rocket booster separating mid-flight,,
+87,A glacier calving into the sea,Louque,Nature,A falcon chasing a pigeon,,
+88,A tornado lifting debris into the air,Louque,Nature,A tornado swirling dust and debris,,
+89,A gazelle bounding over the grasslands,Louque,Animal,A spider scuttling quickly across leaves,,
+90,A storm cloud swirling violently,Louque,Nature,A racecar making a tight turn,,
+91,A thunderstorm rolling over mountains,Louque,Nature,A bumblebee buzzing between flowers,,
+92,A tornado touching down in a field,Whitfield ,Nature,A glacier moving slowly but powerfully,,
+93,A comet blazing through space,Whitfield,Nature,A surfer cutting sharply on a wave,,
+94,A condor soaring over mountains,Whitfield,Animal,A dragonfly skimming over water,,
+95,A surfer cutting sharply on a wave,Hijazi,Human,A hawk flapping its wings powerfully,,
+96,A caterpillar transforming into a butterfly,Hijazi,Animal,A shark breaching to catch a seal,,
+97,A horse sprinting across a beach,Hijazi,Animal,A waterfall cascading into a pool,,
+98,A glacier moving slowly but powerfully,Hijazi,Nature,A rocket landing vertically on a platform,,
+99,A spider scuttling quickly across leaves,Hijazi,Animal,A snow leopard sprinting up a rocky slope,,
+100,A glider soaring silently in the sky,Hijazi,Instrument,,,
+101,A meteor blazing through the atmosphere,Hijazi,Nature,,,
+102,A panther stalking silently through the jungle,Hijazi,Animal,,,
+103,A helicopter lifting off from a helipad,Whitfield,Instrument,,,
+104,A lava flow creeping down a mountainside,Whitfield,Nature,,,
+105,A peregrine falcon swooping toward the ground,Whitfield,Animal,,,
+106,A boxer dodging a punch and countering in slow motion,Whitfield,Human,,,
+107,A sprinter exploding out of the starting blocks,Whitfield,Human,,,
+108,A marathon runner pushing through exhaustion,Lao,Human,,,
+109,A track runner crossing the finish line in victory,Lao,Human,,,
+110,A rock climber hanging by one hand on a cliff face,Lao,Human,,,
+111,A breakdancer spinning on their head under neon lights,Whitfield,Human,,,
+112,A martial artist delivering a flying kick midair,Lao,Human,,,
