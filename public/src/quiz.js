@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { video: "videos/5.mp4", correctAnswer: "A fire ant army marching" },
     {
       video: "videos/6.mp4",
-      correctAnswer: "A shark breaching to catch a seal",
+      correctAnswer: "A horse leaping a wooden fence",
     },
     {
       video: "videos/7.mp4",
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       video: "videos/56.mp4",
-      correctAnswer: "A parrot flapping its colorful wings",
+      correctAnswer: "A cobra flaring its hood",
     },
     {
       video: "videos/57.mp4",
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       video: "videos/62.mp4",
-      correctAnswer: "A mountain biker flying over a jump",
+      correctAnswer: "A mountain goat scaling a steep cliff",
     },
     {
       video: "videos/63.mp4",
@@ -490,13 +490,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "A mountain biker flying over a jump",
     "A racehorse thundering down a track",
     "A hawk diving towards the ground",
-    "A parrot flapping its colorful wings",
+    "A cobra flaring its hood",
     "A horse rearing up wildly",
     "A scorpion snapping its claws",
     "A volcano erupting molten lava",
     "A dragonfly skimming over water",
     "A fire spreading quickly through a forest",
-    "A mountain biker flying over a jump",
+    "A mountain goat scaling a steep cliff",
     "A tornado swirling dust and debris",
     "A whale spouting water from its blowhole",
     "A falcon chasing a pigeon",
