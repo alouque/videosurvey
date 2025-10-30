@@ -45,14 +45,43 @@
         <h1>Video Quiz Study</h1>
         <div class="video-box">
           <!-- Added oncontextmenu to prevent right-click download -->
-          <video id="video" controls oncontextmenu="return false;"></video>
+          <video
+            id="video"
+            controls
+            autoplay
+            muted
+            playsinline
+            oncontextmenu="return false;"
+          ></video>
         </div>
         <div id="question" class="question">
           What is happening in this video?
         </div>
         <div id="options" class="options"></div>
+
+        <div id="feedback" class="feedback"></div>
         <div class="actions">
           <button id="nextBtn" disabled>Next</button>
+        </div>
+      </div>
+
+      <!-- Intermission Screen (after practice) -->
+      <div id="intermission-screen" style="display: none">
+        <h1>Practice Complete</h1>
+        <div class="intro">
+          <h2>Rules (Reminder)</h2>
+          <p>You will now begin the study. The rules are the same:</p>
+          <ul>
+            <li>Watch each video carefully before answering.</li>
+            <li>Select the option that best describes what is happening.</li>
+            <li>Do not refresh the page once you begin.</li>
+            <li>You can only move forward (no going back).</li>
+          </ul>
+          <p>Your answers will be recorded from this point on.</p>
+          <p>Good Luck!</p>
+        </div>
+        <div class="start-actions">
+          <button id="startQuizBtn">Start Quiz</button>
         </div>
       </div>
     </div>

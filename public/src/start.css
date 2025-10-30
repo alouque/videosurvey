@@ -1,8 +1,8 @@
 #start-screen .intro {
-  margin-bottom: 1rem; /* mb-8 */
+  margin-bottom: 0.5rem; /* mb-4 */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* space-y-4 */
+  gap: 0.25rem; /* space-y-1 */
 }
 
 #start-screen .start-actions {
@@ -11,4 +11,26 @@
 
 #start-screen .start-actions button {
   margin-top: 0.5rem; /* mt-4 */
+}
+
+/* Styles for the new intermission screen */
+#intermission-screen .intro {
+  margin-bottom: 1rem;
+  /* Center the text */
+  text-align: center;
+}
+
+#intermission-screen .intro ul {
+  /* Make the list left-aligned within the centered block */
+  display: inline-block;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+#intermission-screen .start-actions {
+  text-align: center;
+}
+
+#intermission-screen .start-actions button {
+  margin-top: 0.5rem;
 }
