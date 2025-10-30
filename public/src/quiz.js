@@ -4,16 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Simplified to only include the practice bank
   const videoBank = [
     {
-      video: "/videos/stacked_0.mp4", // <-- FINAL PATH: Absolute from 'src' server root
-      correctAnswer: "Whale",
+      video: "videos/stacked_0.mp4", // <-- FINAL PATH: Absolute from 'src' server root
+      correctAnswer: "Whale Breaching the Water",
     },
     {
-      video: "/videos/stacked_1.mp4", // <-- FINAL PATH
-      correctAnswer: "Rollercoaster",
+      video: "videos/stacked_4.mp4", // <-- FINAL PATH
+      correctAnswer: "Phoenix Rising from Ashes",
     },
     {
-      video: "/videos/stacked_2.mp4", // <-- FINAL PATH
-      correctAnswer: "Kangaroo",
+      video: "videos/stacked_1.mp4", // <-- FINAL PATH
+      correctAnswer: "Rollercoaster Ride",
     },
   ];
 
