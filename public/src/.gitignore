@@ -1,0 +1,8 @@
+serviceAccount.json
+*.cjs
+node_modules/
+.env
+.DS_Store
+dist/
+get_vimeo_ids.js
+videosurvey/public/src/keys.env
