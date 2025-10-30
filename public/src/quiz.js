@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "A rocket launching into space",
     "A phoenix rising from ashes",
     "A fire ant army marching",
-    "A shark breaching to catch a seal",
+    "A horse leaping a wooden fence",
     "A deer leaping over a fallen log",
     "A cheetah sprinting across the savannah",
     "A scateboarder grinding a rail",
