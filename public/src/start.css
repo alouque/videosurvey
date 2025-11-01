@@ -1,36 +1,51 @@
-#start-screen .intro {
-  margin-bottom: 0.5rem; /* mb-4 */
+#start-screen .intro,
+#intermission-screen .intro,
+#consent-screen .intro {
+  /* consent-screen */
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem; /* space-y-1 */
+  gap: 0.25rem; /* Reduced gap */
+  /* left align text */
+  text-align: left;
 }
 
-#start-screen .start-actions {
+#start-screen .start-actions,
+#intermission-screen .start-actions,
+#consent-screen .start-actions {
+  /* consent-screen */
   text-align: center;
 }
 
-#start-screen .start-actions button {
+#start-screen .start-actions button,
+#intermission-screen .start-actions button,
+#consent-screen .start-actions button {
+  /* consent-screen */
   margin-top: 0.5rem; /* mt-4 */
 }
 
-/* Styles for the new intermission screen */
-#intermission-screen .intro {
-  margin-bottom: 1rem;
-  /* Center the text */
-  text-align: center;
+/* Specific styles for intermission/consent text */
+#intermission-screen h2,
+#consent-screen h2 {
+  /* consent-screen */
+  font-weight: 700; /* bolder */
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
 }
 
-#intermission-screen .intro ul {
-  /* Make the list left-aligned within the centered block */
-  display: inline-block;
-  text-align: left;
-  margin-top: 0.5rem;
+#intermission-screen p,
+#intermission-screen li,
+#consent-screen p,
+#consent-screen li {
+  /* consent-screen */
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #374151; /* gray-700 */
 }
 
-#intermission-screen .start-actions {
-  text-align: center;
-}
-
-#intermission-screen .start-actions button {
-  margin-top: 0.5rem;
+/* Style for the final consent agreement paragraph */
+.consent-agreement {
+  font-weight: 700 !important; /* Make it bold */
+  font-style: italic;
+  margin-top: 1rem;
 }

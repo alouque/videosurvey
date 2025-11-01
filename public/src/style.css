@@ -9,16 +9,13 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  /* Add this to help on mobile */
-  padding: 0.25rem;
-  box-sizing: border-box;
 }
 
 .wrap {
   width: 100%;
-  max-width: 56rem; /* max-w-4xl, Increased from 42rem */
-  margin: 0; /* Removed margin */
-  padding: 1rem 1.5rem; /* Reduced padding */
+  max-width: 56rem; /* max-w-3xl */
+  margin: 1rem;
+  padding: 1.5rem 2rem;
   background-color: #ffffff; /* bg-white */
   border-radius: 0.5rem; /* rounded-lg */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -30,21 +27,20 @@ h1 {
   font-size: 1.875rem; /* text-3xl */
   font-weight: 700;
   text-align: center;
-  margin-bottom: 0.5rem; /* Reduced margin */
+  margin-bottom: 1rem;
   color: #4338ca; /* indigo-700 */
 }
 
 h2 {
   font-size: 1.25rem; /* text-xl */
   font-weight: 600;
-  margin-bottom: 0.25rem; /* Reduced margin */
+  margin-bottom: 0.25rem;
 }
 
 ul {
   list-style-position: inside;
   list-style-type: disc;
   padding-left: 1rem;
-  margin-top: 0.25rem; /* Added */
 }
 li {
   margin-bottom: 0.25rem;
@@ -54,7 +50,7 @@ li {
 button {
   width: 100%;
   max-width: 28rem; /* max-w-md */
-  padding: 0.6rem 1.25rem; /* Reduced padding */
+  padding: 0.75rem 1.5rem;
   font-weight: 700;
   color: #ffffff;
   background-color: #4f46e5; /* indigo-600 */
@@ -76,52 +72,61 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Base Input Style */
-input[type="email"] {
+/* MODIFIED: Added input[type="text"] */
+input[type="email"],
+input[type="text"] {
   width: 100%;
   max-width: 28rem; /* max-w-md */
-  padding: 0.6rem 1rem; /* Reduced padding */
+  padding: 0.75rem 1rem;
   border: 1px solid #d1d5db; /* border-gray-300 */
   border-radius: 0.5rem; /* rounded-lg */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  box-sizing: border-box;
 }
-input[type="email"]:focus {
+input[type="email"]:focus,
+input[type="text"]:focus { /* MODIFIED */
   outline: none;
   border-color: #4f46e5; /* focus:border-indigo-500 */
   box-shadow: 0 0 0 2px #a5b4fc; /* focus:ring-2 focus:ring-indigo-500 */
 }
 
-#email-error {
+/* MODIFIED: Changed ID to class for reusability */
+.error-message {
   color: #dc2626; /* red-600 */
   font-size: 0.875rem; /* text-sm */
   height: 1.25rem; /* h-5 */
   margin-top: 0.25rem; /* mt-1 */
-  /* Ensures layout doesn't jump */
   min-height: 1.25rem;
   box-sizing: border-box;
 }
 
+/* NEW: Hide new screens by default */
+#consent-screen,
+#intermission-screen,
+#quiz-screen {
+  display: none;
+}
+/* END NEW */
+
+
 /* Quiz Screen */
 #quiz-screen h1 {
   font-size: 1.5rem; /* text-2xl */
-  margin-bottom: 0.5rem; /* Reduced margin */
+  margin-bottom: 1rem;
 }
 
 .video-box {
   background-color: #000000;
   border-radius: 0.5rem;
   overflow: hidden;
-  margin-bottom: 0.5rem; /* Reduced margin */
+  margin-bottom: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
 }
 video {
   width: 100%;
   display: block;
-  /* Constrain the video's max height to prevent scrolling */
-  max-height: 65vh;
-  /* Center it if aspect ratio makes it letterboxed */
+  max-height: 50vh;
   margin: 0 auto;
 }
 
@@ -129,26 +134,28 @@ video {
   font-size: 1.25rem; /* text-xl */
   font-weight: 600;
   text-align: center;
-  margin: 0.75rem 0; /* Reduced margin */
+  margin: 1rem 0;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Reduced gap */
+  gap: 0.5rem;
 }
 
 .option {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  padding: 0.6rem; /* Reduced padding */
+  padding: 0.75rem;
   border: 1px solid #d1d5db; /* border-gray-300 */
   border-radius: 0.5rem; /* rounded-lg */
   transition-property: all;
   transition-duration: 200ms;
   background-color: #ffffff; /* bg-white */
   box-sizing: border-box;
+  white-space: normal;
+  word-break: break-word;
 }
 .option:hover {
   background-color: #f9fafb; /* hover:bg-gray-100 */
@@ -158,29 +165,23 @@ video {
   border-color: #6366f1; /* border-indigo-500 */
   font-weight: 600; /* font-semibold */
 }
-
-/* --- NEW STYLES FOR ANSWER FEEDBACK --- */
 .option.correct-answer {
   background-color: #dcfce7; /* green-100 */
   border-color: #22c55e; /* green-500 */
-  color: #15803d; /* green-700 */
   font-weight: 600;
 }
 .option.incorrect-answer {
   background-color: #fee2e2; /* red-100 */
   border-color: #ef4444; /* red-500 */
-  color: #b91c1c; /* red-700 */
   font-weight: 600;
 }
 
-/* Re-enabled the text feedback div */
 .feedback {
   text-align: center;
   font-size: 1.125rem; /* text-lg */
   font-weight: 600;
-  margin-top: 0.75rem; /* Reduced margin */
-  /* This ensures the layout doesn't jump when text appears */
-  min-height: 1.5rem; /* Reduced min-height */
+  margin-top: 1.5rem;
+  min-height: 1.75rem;
 }
 .feedback.correct {
   color: #16a34a; /* green-600 */
@@ -191,5 +192,6 @@ video {
 
 .actions {
   text-align: center;
-  margin-top: 0.75rem; /* Reduced margin */
+  margin-top: 1rem;
 }
+

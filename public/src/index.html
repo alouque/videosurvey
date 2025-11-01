@@ -28,15 +28,65 @@
           </ul>
 
           <h2>Notes</h2>
-          <!-- Updated this line -->
           <p>The study will take about 10-15 minutes.</p>
         </div>
 
         <div class="start-actions">
           <input id="pid" type="email" placeholder="LSU EMAIL REQUIRED" />
-          <!-- Added div for email validation error messages -->
-          <div id="email-error"></div>
-          <button id="startBtn" disabled>Practice</button>
+          <div id="email-error" class="error-message"></div>
+          <!-- MODIFIED: Changed button ID -->
+          <button id="continueBtn" disabled>Continue</button>
+        </div>
+      </div>
+
+      <!-- Consent Screen -->
+      <div id="consent-screen" style="display: none">
+        <h1>Study Consent</h1>
+        <div class="intro">
+          <h2>Informed Consent</h2>
+          <p>
+            Please read the following information carefully before deciding to
+            participate.
+          </p>
+          <ul>
+            <li>Your participation in this research study is voluntary.</li>
+            <li>Your data will be kept anonymous.</li>
+            <li>
+              You may stop your participation at any time by closing this
+              browser window.
+            </li>
+          </ul>
+          <p class="consent-agreement">
+            By typing your full name below, you agree that you are 18 years of
+            age or older and consent to participate in this study.
+          </p>
+        </div>
+        <div class="start-actions">
+          <input id="fullName" type="text" placeholder="Type your full name" />
+          <div id="name-error" class="error-message"></div>
+          <button id="consentBtn" disabled>Agree & Start Practice</button>
+        </div>
+      </div>
+
+      <!-- Intermission Screen -->
+      <div id="intermission-screen" style="display: none">
+        <h1>Practice Complete</h1>
+        <div class="intro">
+          <h2>You've completed the practice round.</h2>
+          <p>The actual quiz will now begin.</p>
+          <p>A reminder of the rules:</p>
+          <ul>
+            <li>Watch each video carefully before answering.</li>
+            <li>Select the option that best describes what is happening.</li>
+            <li>
+              During the real quiz, you will not get "Correct" or "Incorrect"
+              feedback.
+            </li>
+            <li>Click "Next" to submit your answer and move on.</li>
+          </ul>
+        </div>
+        <div class="start-actions">
+          <button id="startQuizBtn">Start Quiz</button>
         </div>
       </div>
 
@@ -44,12 +94,11 @@
       <div id="quiz-screen" style="display: none">
         <h1>Video Quiz Study</h1>
         <div class="video-box">
-          <!-- Added oncontextmenu to prevent right-click download -->
           <video
             id="video"
             controls
-            autoplay
             muted
+            autoplay
             playsinline
             oncontextmenu="return false;"
           ></video>
@@ -58,30 +107,9 @@
           What is happening in this video?
         </div>
         <div id="options" class="options"></div>
-
         <div id="feedback" class="feedback"></div>
         <div class="actions">
           <button id="nextBtn" disabled>Next</button>
-        </div>
-      </div>
-
-      <!-- Intermission Screen (after practice) -->
-      <div id="intermission-screen" style="display: none">
-        <h1>Practice Complete</h1>
-        <div class="intro">
-          <h2>Rules (Reminder)</h2>
-          <p>You will now begin the study. The rules are the same:</p>
-          <ul>
-            <li>Watch each video carefully before answering.</li>
-            <li>Select the option that best describes what is happening.</li>
-            <li>Do not refresh the page once you begin.</li>
-            <li>You can only move forward (no going back).</li>
-          </ul>
-          <p>Your answers will be recorded from this point on.</p>
-          <p>Good Luck!</p>
-        </div>
-        <div class="start-actions">
-          <button id="startQuizBtn">Start Quiz</button>
         </div>
       </div>
     </div>

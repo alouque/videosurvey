@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- Quiz Data ---
-
   const practiceBank = [
     {
       video: "videos/stacked_0.mp4",
-      correctAnswer: "A whale breaching the ocean surface",
+      correctAnswer: "Whale Breaching the Water",
     },
     {
       video: "videos/stacked_4.mp4",
-      correctAnswer: "A phoenix rising from ashes",
+      correctAnswer: "Phoenix Rising from Ashes",
     },
     {
       video: "videos/stacked_1.mp4",
-      correctAnswer: "A roller coaster plummeting down a steep track",
+      correctAnswer: "Roller Coaster Going Downhill",
     },
   ];
 
-  // Update studyBank with all videos and their correct answers
   const studyBank = [
     {
       video: "videos/0.mp4",
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { video: "videos/5.mp4", correctAnswer: "A fire ant army marching" },
     {
       video: "videos/6.mp4",
-      correctAnswer: "A horse leaping a wooden fence",
+      correctAnswer: "A shark breaching to catch a seal",
     },
     {
       video: "videos/7.mp4",
@@ -54,18 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/11.mp4",
       correctAnswer: "A spaceship entering hyperspace",
     },
-    {
-      video: "videos/12.mp4",
-      correctAnswer: "A snake striking at prey",
-    },
-    {
-      video: "videos/13.mp4",
-      correctAnswer: "A surfer riding a massive wave",
-    },
-    {
-      video: "videos/14.mp4",
-      correctAnswer: "A spider weaving a web swiftly",
-    },
+    { video: "videos/12.mp4", correctAnswer: "A snake striking at prey" },
+    { video: "videos/13.mp4", correctAnswer: "A surfer riding a massive wave" },
+    { video: "videos/14.mp4", correctAnswer: "A spider weaving a web swiftly" },
     {
       video: "videos/15.mp4",
       correctAnswer: "A boxer throwing a powerful punch",
@@ -86,14 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/19.mp4",
       correctAnswer: "A dragonfly zipping over a pond",
     },
-    {
-      video: "videos/20.mp4",
-      correctAnswer: "A race car zooming on a track",
-    },
-    {
-      video: "videos/21.mp4",
-      correctAnswer: "A hammer striking a nail",
-    },
+    { video: "videos/20.mp4", correctAnswer: "A race car zooming on a track" },
+    { video: "videos/21.mp4", correctAnswer: "A hammer striking a nail" },
     {
       video: "videos/22.mp4",
       correctAnswer: "A firework exploding in the sky",
@@ -110,10 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/25.mp4",
       correctAnswer: "A dolphin leaping through waves",
     },
-    {
-      video: "videos/26.mp4",
-      correctAnswer: "A python constricting its prey",
-    },
+    { video: "videos/26.mp4", correctAnswer: "A python constricting its prey" },
     {
       video: "videos/27.mp4",
       correctAnswer: "A falcon catching prey mid-flight",
@@ -126,18 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/29.mp4",
       correctAnswer: "A jet ski speeding across a lake",
     },
-    {
-      video: "videos/30.mp4",
-      correctAnswer: "A pelican diving for fish",
-    },
+    { video: "videos/30.mp4", correctAnswer: "A pelican diving for fish" },
     {
       video: "videos/31.mp4",
       correctAnswer: "A stallion rearing up and kicking",
     },
-    {
-      video: "videos/32.mp4",
-      correctAnswer: "A jet plane banking sharply",
-    },
+    { video: "videos/32.mp4", correctAnswer: "A jet plane banking sharply" },
     {
       video: "videos/33.mp4",
       correctAnswer: "A catapult launching a projectile",
@@ -158,38 +132,23 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/37.mp4",
       correctAnswer: "A squirrel darting between tree branches",
     },
-    {
-      video: "videos/38.mp4",
-      correctAnswer: "A car drifting on a wet road",
-    },
+    { video: "videos/38.mp4", correctAnswer: "A car drifting on a wet road" },
     {
       video: "videos/39.mp4",
       correctAnswer: "A hummingbird flicking its wings rapidly",
     },
-    {
-      video: "videos/40.mp4",
-      correctAnswer: "A dragon breathing fire",
-    },
+    { video: "videos/40.mp4", correctAnswer: "A dragon breathing fire" },
     {
       video: "videos/41.mp4",
       correctAnswer: "A spider leaping to catch a fly",
     },
-    {
-      video: "videos/42.mp4",
-      correctAnswer: "A spacecraft landing on Mars",
-    },
-    {
-      video: "videos/43.mp4",
-      correctAnswer: "A spaceship launching a probe",
-    },
+    { video: "videos/42.mp4", correctAnswer: "A spacecraft landing on Mars" },
+    { video: "videos/43.mp4", correctAnswer: "A spaceship launching a probe" },
     {
       video: "videos/44.mp4",
       correctAnswer: "A speedboat racing across water",
     },
-    {
-      video: "videos/45.mp4",
-      correctAnswer: "A cheetah twisting mid-run",
-    },
+    { video: "videos/45.mp4", correctAnswer: "A cheetah twisting mid-run" },
     {
       video: "videos/46.mp4",
       correctAnswer: "A rocket booster separating mid-flight",
@@ -232,20 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       video: "videos/56.mp4",
-      correctAnswer: "A cobra flaring its hood",
+      correctAnswer: "A parrot flapping its colorful wings",
     },
-    {
-      video: "videos/57.mp4",
-      correctAnswer: "A horse rearing up wildly",
-    },
-    {
-      video: "videos/58.mp4",
-      correctAnswer: "A scorpion snapping its claws",
-    },
-    {
-      video: "videos/59.mp4",
-      correctAnswer: "A volcano erupting molten lava",
-    },
+    { video: "videos/57.mp4", correctAnswer: "A horse rearing up wildly" },
+    { video: "videos/58.mp4", correctAnswer: "A scorpion snapping its claws" },
+    { video: "videos/59.mp4", correctAnswer: "A volcano erupting molten lava" },
     {
       video: "videos/60.mp4",
       correctAnswer: "A dragonfly skimming over water",
@@ -256,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       video: "videos/62.mp4",
-      correctAnswer: "A mountain goat scaling a steep cliff",
+      correctAnswer: "A mountain biker flying over a jump",
     },
     {
       video: "videos/63.mp4",
@@ -266,18 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/64.mp4",
       correctAnswer: "A whale spouting water from its blowhole",
     },
-    {
-      video: "videos/65.mp4",
-      correctAnswer: "A falcon chasing a pigeon",
-    },
-    {
-      video: "videos/66.mp4",
-      correctAnswer: "A hummingbird hovering rapidly",
-    },
-    {
-      video: "videos/67.mp4",
-      correctAnswer: "A submarine surfacing rapidly",
-    },
+    { video: "videos/65.mp4", correctAnswer: "A falcon chasing a pigeon" },
+    { video: "videos/66.mp4", correctAnswer: "A hummingbird hovering rapidly" },
+    { video: "videos/67.mp4", correctAnswer: "A submarine surfacing rapidly" },
     {
       video: "videos/68.mp4",
       correctAnswer: "A comet streaking across the night sky",
@@ -306,18 +247,12 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/74.mp4",
       correctAnswer: "A lightning storm illuminating the sky",
     },
-    {
-      video: "videos/75.mp4",
-      correctAnswer: "A racecar making a tight turn",
-    },
+    { video: "videos/75.mp4", correctAnswer: "A racecar making a tight turn" },
     {
       video: "videos/76.mp4",
       correctAnswer: "A skier carving through fresh powder",
     },
-    {
-      video: "videos/77.mp4",
-      correctAnswer: "A lioness pouncing on prey",
-    },
+    { video: "videos/77.mp4", correctAnswer: "A lioness pouncing on prey" },
     {
       video: "videos/78.mp4",
       correctAnswer: "A submarine diving deep underwater",
@@ -354,10 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/86.mp4",
       correctAnswer: "A whale tail slapping the ocean surface",
     },
-    {
-      video: "videos/87.mp4",
-      correctAnswer: "A glacier calving into the sea",
-    },
+    { video: "videos/87.mp4", correctAnswer: "A glacier calving into the sea" },
     {
       video: "videos/88.mp4",
       correctAnswer: "A tornado lifting debris into the air",
@@ -378,10 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
       video: "videos/92.mp4",
       correctAnswer: "A tornado touching down in a field",
     },
-    {
-      video: "videos/93.mp4",
-      correctAnswer: "A comet blazing through space",
-    },
+    { video: "videos/93.mp4", correctAnswer: "A comet blazing through space" },
     {
       video: "videos/94.mp4",
       correctAnswer: "A condor soaring over mountains",
@@ -433,14 +362,16 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const allAnswers = [
-    // --- 106 Study Answers (0-105)---
+    "Whale Breaching the Water",
+    "Phoenix Rising from Ashes",
+    "Roller Coaster Going Downhill",
     "A whale breaching the ocean surface",
     "A roller coaster plummeting down a steep track",
     "A kangaroo bounding across the outback",
     "A rocket launching into space",
     "A phoenix rising from ashes",
     "A fire ant army marching",
-    "A horse leaping a wooden fence",
+    "A shark breaching to catch a seal",
     "A deer leaping over a fallen log",
     "A cheetah sprinting across the savannah",
     "A scateboarder grinding a rail",
@@ -490,13 +421,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "A mountain biker flying over a jump",
     "A racehorse thundering down a track",
     "A hawk diving towards the ground",
-    "A cobra flaring its hood",
+    "A parrot flapping its colorful wings",
     "A horse rearing up wildly",
     "A scorpion snapping its claws",
     "A volcano erupting molten lava",
     "A dragonfly skimming over water",
     "A fire spreading quickly through a forest",
-    "A mountain goat scaling a steep cliff",
+    "A mountain biker flying over a jump",
     "A tornado swirling dust and debris",
     "A whale spouting water from its blowhole",
     "A falcon chasing a pigeon",
@@ -545,26 +476,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Quiz State ---
   let idx = 0;
   let selected = null;
-  let isAnswered = false; // State to track if feedback is shown
-  let isPractice = true; // State to track practice vs. study
-  let responses = []; // This will be cleared after practice
+  let isAnswered = false;
+  let isPractice = true;
+  let responses = [];
 
   // --- DOM Element References ---
   const $v = document.getElementById("video");
   const $opts = document.getElementById("options");
   const $next = document.getElementById("nextBtn");
   const $pid = document.getElementById("pid");
-  const $start = document.getElementById("startBtn");
+  const $start = document.getElementById("continueBtn"); // MODIFIED: ID changed
   const emailError = document.getElementById("email-error");
   const questionEl = document.getElementById("question");
   const $feedback = document.getElementById("feedback");
-  //Screen references
+  // Screen references
   const $startScreen = document.getElementById("start-screen");
   const $quizScreen = document.getElementById("quiz-screen");
   const $intermissionScreen = document.getElementById("intermission-screen");
   const $startQuizBtn = document.getElementById("startQuizBtn");
+  // NEW: Consent screen elements
+  const $consentScreen = document.getElementById("consent-screen");
+  const $fullNameInput = document.getElementById("fullName");
+  const $consentBtn = document.getElementById("consentBtn");
+  const $nameError = document.getElementById("name-error");
 
-  //Check if elements exist
+  // Check if elements exist
   if (
     !$pid ||
     !$start ||
@@ -577,7 +513,11 @@ document.addEventListener("DOMContentLoaded", () => {
     !$startScreen ||
     !$quizScreen ||
     !$intermissionScreen ||
-    !$startQuizBtn
+    !$startQuizBtn ||
+    !$consentScreen ||
+    !$fullNameInput ||
+    !$consentBtn ||
+    !$nameError // NEW: Check new elements
   ) {
     console.error(
       "Quiz script failed: Could not find one or more required DOM elements."
@@ -592,7 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = $pid.value.trim().toLowerCase();
     if (email.endsWith("@lsu.edu")) {
       $start.disabled = false;
-      emailError.textContent = ""; //Clear error
+      emailError.textContent = "";
     } else {
       $start.disabled = true;
       if (email.length > 0 && !email.includes("@")) {
@@ -600,7 +540,24 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (email.length > 0) {
         emailError.textContent = "Email must end with @lsu.edu";
       } else {
-        emailError.textContent = ""; //Clear error if empty
+        emailError.textContent = "";
+      }
+    }
+  });
+
+  // Full Name Validation Logic ---
+  $fullNameInput.addEventListener("input", () => {
+    const name = $fullNameInput.value.trim();
+    // Simple check: name should be at least 2 characters
+    if (name.length > 1) {
+      $consentBtn.disabled = false;
+      $nameError.textContent = "";
+    } else {
+      $consentBtn.disabled = true;
+      if (name.length > 0) {
+        $nameError.textContent = "Please enter your full name.";
+      } else {
+        $nameError.textContent = "";
       }
     }
   });
@@ -622,7 +579,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    //Reset state for the new trial
+    // Reset state for the new trial
     selected = null;
     isAnswered = false;
     $next.disabled = true;
@@ -630,6 +587,9 @@ document.addEventListener("DOMContentLoaded", () => {
     $feedback.textContent = "";
     $feedback.className = "feedback";
     $opts.style.pointerEvents = "auto";
+    document.querySelectorAll(".option").forEach((n) => {
+      n.classList.remove("selected", "incorrect-answer", "correct-answer");
+    });
 
     const trial = currentBank[idx];
     $v.src = trial.video;
@@ -641,7 +601,6 @@ document.addEventListener("DOMContentLoaded", () => {
       questionEl.textContent = "Error: Could not load video file.";
     };
 
-    //Update question text
     const questionPrefix = isPractice ? "Practice" : "Video";
     questionEl.textContent = `What is happening in this video? (${questionPrefix} ${
       idx + 1
@@ -653,13 +612,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Autoplay was prevented by the browser. User must click play."
       );
     });
-    $opts.innerHTML = ""; //Clear old options
+    $opts.innerHTML = "";
 
-    //Get 3 random wrong answers from the pool
     const wrongAnswers = allAnswers.filter((x) => x !== trial.correctAnswer);
     const shuffledWrong = shuffle(wrongAnswers).slice(0, 3);
 
-    //Combine and shuffle correct + wrong answers
     const opts = shuffle([trial.correctAnswer, ...shuffledWrong]);
 
     opts.forEach((label) => {
@@ -667,7 +624,8 @@ document.addEventListener("DOMContentLoaded", () => {
       d.className = "option";
       d.textContent = label;
       d.onclick = () => {
-        if (isAnswered) return;
+        // ---CLICK LOGIC ---
+        if (isAnswered && isPractice) return; // Block clicks if practice answer is submitted
 
         $feedback.textContent = "";
         $feedback.className = "feedback";
@@ -681,32 +639,27 @@ document.addEventListener("DOMContentLoaded", () => {
         selected = label;
         $next.disabled = false;
       };
-      $opts.appendChild(d);
+      $opts.appendChild(d); // Appending to options
     });
   }
 
-  //--- Event Listeners ---
-  //MODIFIED: $next.onclick logic
+  // --- Event Listeners ---
   $next.onclick = async () => {
     const currentBank = isPractice ? practiceBank : studyBank;
 
-    // --- CASE 1: User is clicking "Continue" (PRACTICE ONLY) ---
     if (isAnswered) {
-      isAnswered = false; //Reset state
-      idx++; //Move to the next index
-
+      // Only true for Practice "Continue"
+      isAnswered = false;
+      idx++;
       if (idx < currentBank.length) {
-        // --- More videos in this round ---
         loadTrial();
       } else {
-        // --- This round is over (PRACTICE IS OVER) ---
         $quizScreen.style.display = "none";
         $intermissionScreen.style.display = "block";
       }
-      return; // Stop execution here
+      return;
     }
 
-    // --- CASE 2: User is clicking "Next" (to submit answer) ---
     const trial = currentBank[idx];
     const isCorrect = selected === trial.correctAnswer;
     const selectedOption = $opts.querySelector(".option.selected");
@@ -714,9 +667,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!selectedOption) return;
 
     if (isPractice) {
-      // --- PRACTICE LOGIC ---
       if (isCorrect) {
-        isAnswered = true; // This will trigger "Continue" logic next click
+        isAnswered = true;
         $next.textContent = "Continue";
         $opts.style.pointerEvents = "none";
         selectedOption.classList.add("correct-answer");
@@ -729,28 +681,26 @@ document.addEventListener("DOMContentLoaded", () => {
         $feedback.className = "feedback incorrect";
       }
     } else {
-      // --- REAL STUDY LOGIC ---
-      // Store the response (right or wrong)
+      // REAL STUDY LOGIC
       responses.push({
         video: trial.video,
         correctAnswer: trial.correctAnswer,
         participantAnswer: selected,
         isCorrect: isCorrect,
         ts: new Date().toISOString(),
+        participantFullName: $fullNameInput.value.trim(), // Storing full name
       });
 
-      idx++; // Move to the next index
-
+      idx++;
       if (idx < currentBank.length) {
-        // --- More videos in this round ---
         loadTrial();
       } else {
-        // This round is over (STUDY IS OVER) ---
-        // Submit results
+        // STUDY IS OVER
         $next.disabled = true;
         $next.textContent = "Submitting...";
         const payload = {
           pid: $pid.value,
+          participantFullName: $fullNameInput.value.trim(), // Storing full name
           startedAt: responses[0]?.ts || new Date().toISOString(),
           responses,
         };
@@ -772,18 +722,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Start button → hide start screen, show quiz screen
+  // Start button → show consent screen
   $start.onclick = () => {
     $startScreen.style.display = "none";
+    $consentScreen.style.display = "block";
+  };
+
+  // Consent button → show quiz screen
+  $consentBtn.onclick = () => {
+    $consentScreen.style.display = "none";
     $quizScreen.style.display = "block";
     loadTrial(); // Load the first practice trial
   };
 
   // Start Quiz button → hide intermission, show quiz
   $startQuizBtn.onclick = () => {
-    isPractice = false; // Switch to study mode!
-    idx = 0; // Reset index
-    responses = []; // Clear practice responses
+    isPractice = false;
+    idx = 0;
+    responses = [];
     $intermissionScreen.style.display = "none";
     $quizScreen.style.display = "block";
     loadTrial(); // Load the first REAL study trial
