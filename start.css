@@ -34,3 +34,53 @@
 #intermission-screen .start-actions button {
   margin-top: 0.5rem;
 }
+
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.8px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: system-ui, Arial, sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  background-color: #f9fafb;
+}
+
+/* Hover and focus look */
+input[type="email"]:focus,
+input[type="text"]:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+  background-color: white;
+}
+
+/* Disabled button style consistency */
+button:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Active button hover */
+button:not(:disabled):hover {
+  background-color: #4338ca;
+  transition: background-color 0.2s ease;
+}
+
+/* Center and spacing fixes */
+.start-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}

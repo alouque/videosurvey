@@ -1,339 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Video Quiz Study</title>
-<style>
-  body { font-family: system-ui, Arial, sans-serif; background:#f5f7fa; margin:0; padding:24px; }
-  .wrap { max-width:820px; margin:0 auto; background:#fff; border-radius:12px; padding:24px; box-shadow:0 10px 25px rgba(0,0,0,.07); }
-  h1 { margin:0 0 16px; color:#4f46e5; text-align:center; }
-  .row { margin:16px 0; }
-  input[type="text"] { width:100%; padding:10px; border:1px solid #e5e7eb; border-radius:8px; }
-  .video-box { margin:20px 0; border-radius:8px; overflow:hidden; background:#000; aspect-ratio:16/9; position:relative; }
-  iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; border-radius:8px; }
-  .question { font-weight:600; margin:16px 0; }
-  .options { display:grid; gap:12px; margin-bottom:16px; }
-  .option { padding:12px; border:2px solid #e5e7eb; border-radius:8px; cursor:pointer; background:#f9fafb; }
-  .option:hover { background:#f3f4f6; }
-  .option.selected { background:#4f46e5; color:white; border-color:#4f46e5; }
-  .feedback { margin-top:10px; font-weight:600; }
-  .feedback.correct { color:green; }
-  .feedback.incorrect { color:red; }
-  .actions { margin-top:16px; text-align:right; }
-  button { padding:10px 16px; border:0; border-radius:8px; background:#4f46e5; color:white; font-weight:600; cursor:pointer; }
-  button:disabled { background:#c5c5c5; cursor:not-allowed; }
-  iframe#vimeoFrame {
-  pointer-events: none;
-}
-</style>
-</head>
-<body>
-<div class="wrap">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="start.css" />
+    <title>Video Quiz Study</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- START SCREEN -->
+      <div id="start-screen">
+        <h1>Welcome to the Video Quiz Study</h1>
+        <div class="intro">
+          <h2>Goal of the Challenge</h2>
+          <p>
+            In this study, you will watch short video clips and answer
+            multiple-choice questions about what you see.
+          </p>
 
-  <!-- Start Screen -->
-  <div id="start-screen">
-    <h1>Welcome to the Video Quiz Study</h1>
-    <p>Enter a participant ID to begin the practice round.</p>
-    <div class="row"><input id="pid" type="text" placeholder="ID (school/personal email is preferred)" /></div>
-    <div class="actions"><button id="startBtn">Start Practice</button></div>
-  </div>
+          <h2>Rules</h2>
+          <ul>
+            <li>Watch each video carefully before answering.</li>
+            <li>Select the option that best describes what is happening.</li>
+            <li>Do not refresh the page once you begin.</li>
+            <li>You can only move forward (no going back).</li>
+          </ul>
 
-  <!-- Quiz Screen -->
-  <div id="quiz-screen" style="display:none;">
-    <h1 id="phaseTitle">Practice Round</h1>
-    <div class="video-box">
-      <iframe
-        id="vimeoFrame"
-        src="https://player.vimeo.com/video/1131847671?h=455a9d6d68&badge=0&byline=0&portrait=0&title=0"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-        allowfullscreen
-        title="quizVideo">
-      </iframe>
+          <h2>Notes</h2>
+          <p>The study will take about 30–45 minutes.</p>
+        </div>
+
+        <div class="start-actions">
+          <input id="pid" type="email" placeholder="EMAIL REQUIRED" />
+          <div id="email-error" class="error-message"></div>
+          <button id="continueBtn" disabled>Continue</button>
+        </div>
+      </div>
+
+      <!-- CONSENT & SCREENING -->
+      <div id="consent-screen" style="display:none">
+        <!-- Screening Questions -->
+        <div id="screening-questions">
+          <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
+            Participant Screening
+          </h1>
+          <div class="intro">
+            <h2>Pre-screening Evaluation</h2>
+            <p>
+              Please complete this brief pre-screening questionnaire to ensure
+              eligibility.
+            </p>
+
+            <form id="screening-form">
+              <div>
+                <p>1. Are you 18 years of age or older?</p>
+                <input type="radio" id="q1-yes" name="q1-age" value="yes" />
+                <label for="q1-yes">Yes</label>
+                <input type="radio" id="q1-no" name="q1-age" value="no" />
+                <label for="q1-no">No</label>
+              </div>
+
+              <div>
+                <p>
+                  2. Do you have any uncorrected vision problems that make it
+                  difficult to view a computer screen clearly?
+                </p>
+                <input type="radio" id="q2-yes" name="q2-vision" value="yes" />
+                <label for="q2-yes">Yes</label>
+                <input type="radio" id="q2-no" name="q2-vision" value="no" />
+                <label for="q2-no">No</label>
+              </div>
+
+              <div>
+                <p>
+                  3. Have you ever experienced severe discomfort, dizziness,
+                  photosensitivity, or motion sickness when viewing computer
+                  screens or visual stimuli?
+                </p>
+                <input
+                  type="radio"
+                  id="q3-yes"
+                  name="q3-discomfort"
+                  value="yes"
+                />
+                <label for="q3-yes">Yes</label>
+                <input
+                  type="radio"
+                  id="q3-no"
+                  name="q3-discomfort"
+                  value="no"
+                />
+                <label for="q3-no">No</label>
+              </div>
+
+              <div>
+                <p>
+                  4. Do you have any diagnosed neurological or cognitive
+                  conditions that could affect your ability to follow
+                  instructions or provide informed consent?
+                </p>
+                <input
+                  type="radio"
+                  id="q4-yes"
+                  name="q4-cognitive"
+                  value="yes"
+                />
+                <label for="q4-yes">Yes</label>
+                <input
+                  type="radio"
+                  id="q4-no"
+                  name="q4-cognitive"
+                  value="no"
+                />
+                <label for="q4-no">No</label>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Exclusion Message -->
+        <div id="exclusion-message" style="display:none">
+          <p><strong>Thank you for your interest.</strong></p>
+          <p>
+            Based on your answers, you are not eligible to participate in this
+            study. This is to ensure participant safety and data quality. We
+            appreciate your time.
+          </p>
+        </div>
+
+        <!-- Consent -->
+        <div id="main-consent-content" style="display:none">
+          <h1>Study Consent</h1>
+          <div class="intro">
+            <h2>Informed Consent</h2>
+            <p>
+              You are invited to take part in a study about how people recognize
+              motion. You will view about 50 short motion videos and choose
+              which description fits best.
+            </p>
+            <ul>
+              <li><strong>Time:</strong> 30–45 minutes.</li>
+              <li>
+                <strong>Risks:</strong> Minimal, possible mild eye fatigue. You
+                may stop at any time.
+              </li>
+              <li>
+                <strong>Confidentiality:</strong> Responses are anonymous.
+                Signed consent forms will be stored securely for six months and
+                then destroyed.
+              </li>
+              <li>
+                <strong>Voluntary Participation:</strong> You may withdraw at
+                any time without penalty.
+              </li>
+            </ul>
+            <p>
+              By typing your full name below, you agree that you are 18 years of
+              age or older and consent to participate in this study.
+            </p>
+          </div>
+          <div class="start-actions">
+            <input id="fullName" type="text" placeholder="Type your full name" />
+            <div id="name-error" class="error-message"></div>
+            <button id="consentBtn" disabled>Agree & Start Practice</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRACTICE + MAIN QUIZ -->
+      <div id="quiz-screen" style="display:none">
+        <h1 id="phaseTitle">Practice Round</h1>
+        <div id="counter" class="counter-display"></div>
+        <div class="video-box">
+          <iframe
+            id="vimeoFrame"
+            src="https://player.vimeo.com/video/1131847671?h=455a9d6d68"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen
+          ></iframe>
+          <div class="video-overlay"></div>
+        </div>
+        <div id="question" class="question">What is happening in this video?</div>
+        <div id="options" class="options"></div>
+        <div id="feedback" class="feedback"></div>
+        <div class="actions"><button id="nextBtn" disabled>Next</button></div>
+      </div>
+
+      <div id="intermission-screen" style="display:none">
+        <h1>Practice Complete!</h1>
+        <p>
+          You’ll now begin the real quiz. Watch carefully and answer each
+          question. You will not see the original videos again or receive
+          feedback.
+        </p>
+        <div class="actions"><button id="startQuizBtn">Start Real Quiz</button></div>
+      </div>
     </div>
-    <div id="question" class="question">What is happening in this video?</div>
-    <div id="options" class="options"></div>
-    <div id="feedback" class="feedback"></div>
-    <div class="actions"><button id="nextBtn" disabled>Next</button></div>
-  </div>
 
-  <!-- Intermission Screen -->
-  <div id="intermission-screen" style="display:none;">
-    <h1>Practice Complete!</h1>
-    <p>Good job! You’ll now begin the real quiz. Remember to watch carefully and answer each question. You will not be given the original video, nor will you be told if you got an answer correct or incorrect.</p>
-    <div class="actions"><button id="startQuizBtn">Start Real Quiz</button></div>
-  </div>
-</div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
 
-<!-- Vimeo Player API -->
-<script src="https://player.vimeo.com/api/player.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-<!-- Firebase Setup -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyCWHHhNTLQ9XA53em6byMfVBqn03JqV0fg",
+        authDomain: "video-study-1dfc0.firebaseapp.com",
+        projectId: "video-study-1dfc0",
+        storageBucket: "video-study-1dfc0.appspot.com",
+        messagingSenderId: "910625697541",
+        appId: "1:910625697541:web:c3764d83f25ddfc16e516c",
+        measurementId: "G-0Q1G7JG6ZX"
+      };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCWHHhNTLQ9XA53em6byMfVBqn03JqV0fg",
-    authDomain: "video-study-1dfc0.firebaseapp.com",
-    projectId: "video-study-1dfc0",
-    storageBucket: "video-study-1dfc0.appspot.com",
-    messagingSenderId: "910625697541",
-    appId: "1:910625697541:web:c3764d83f25ddfc16e516c",
-    measurementId: "G-0Q1G7JG6ZX"
-  };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      await signInAnonymously(auth);
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  await signInAnonymously(auth);
+      /* ---------- CONSENT + SCREENING LOGIC ---------- */
+      const $continueBtn = document.getElementById("continueBtn");
+      const $emailInput = document.getElementById("pid");
+      const $emailError = document.getElementById("email-error");
+      const $consentScreen = document.getElementById("consent-screen");
+      const $screeningForm = document.getElementById("screening-form");
+      const $exclusionMessage = document.getElementById("exclusion-message");
+      const $mainConsentContent = document.getElementById("main-consent-content");
+      const $fullName = document.getElementById("fullName");
+      const $nameError = document.getElementById("name-error");
+      const $consentBtn = document.getElementById("consentBtn");
 
-  window.submitResultsToFirestore = async function (payload) {
-    try {
-      console.log("🟢 Submitting results to Firestore…", payload);
-
-      const pRef = await addDoc(collection(db, "participants"), {
-        pid: payload.pid,
-        startedAt: payload.startedAt,
-        userAgent: navigator.userAgent,
-        createdAt: serverTimestamp(),
+      // Validate email
+      $emailInput.addEventListener("input", () => {
+        const v = $emailInput.value.trim();
+        // ✅ fixed regex
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        $emailError.textContent = ok ? "" : "Enter a valid email.";
+        $continueBtn.disabled = !ok;
       });
 
-      for (const r of payload.responses) {
-        await addDoc(collection(db, "participants", pRef.id, "responses"), {
-          video: r.video,
-          videoId: r.id || r.video.split("/").pop(),  // fallback if you only have full URL
-          base: r.base ?? null,
-          noiseLevel: r.noise ?? null,
-          videoTitle: r.title ?? null,
+      $continueBtn.addEventListener("click", () => {
+        document.getElementById("start-screen").style.display = "none";
+        $consentScreen.style.display = "block";
+      });
 
-          participantAnswer: r.participantAnswer,
-          correctAnswer: r.correctAnswer,
-          isCorrect: r.isCorrect,
+      let screeningAnswers = {};
+      $screeningForm.addEventListener("change", () => {
+        screeningAnswers = {
+          age: $screeningForm.querySelector("input[name='q1-age']:checked")?.value,
+          vision: $screeningForm.querySelector("input[name='q2-vision']:checked")?.value,
+          discomfort: $screeningForm.querySelector("input[name='q3-discomfort']:checked")?.value,
+          cognitive: $screeningForm.querySelector("input[name='q4-cognitive']:checked")?.value,
+        };
+        if (Object.values(screeningAnswers).some(a => !a)) return;
+        const ineligible = screeningAnswers.age === "no" || screeningAnswers.vision === "yes" || screeningAnswers.discomfort === "yes" || screeningAnswers.cognitive === "yes";
+        if (ineligible) {
+          $screeningForm.style.display = "none";
+          $exclusionMessage.style.display = "block";
+        } else {
+          $screeningForm.style.display = "none";
+          $mainConsentContent.style.display = "block";
+        }
+      });
 
-          ts: r.ts,
-          createdAt: serverTimestamp()
-        });
-      }
+      $fullName.addEventListener("input", () => {
+        if ($fullName.value.trim().split(" ").length < 2) {
+          $nameError.textContent = "Please enter your full name.";
+          $consentBtn.disabled = true;
+        } else {
+          $nameError.textContent = "";
+          $consentBtn.disabled = false;
+        }
+      });
 
-      console.log("✅ Firestore submission succeeded for", payload.pid);
-      return true;
-    } catch (err) {
-      console.error("❌ Firestore submission failed:", err);
-      alert(`Firestore error: ${err.message || err}`);
-      throw err;
-    }
-  };
-</script>
-
-<!-- Quiz Logic -->
-<script>
-// --- DATA BANKS ---
-const practiceBank = [
-  { id: 1131847671, correctAnswer: "A Phoenix rising from the ashes" },
-  { id: 1131847430, correctAnswer: "A whale breaching the ocean surface" },
-  { id: 1131847476, correctAnswer: "A roller coaster plummeting down a steep track" }
-];
-
-let studyBank = []; 
-
-const allAnswers = {
-  0: "A whale breaching the ocean surface", 1: "A roller coaster plummeting down a steep track", 2: "A kangaroo bounding across the outback", 3: "A rocket launching into space", 4: "A phoenix rising from ashes", 5: "A fire ant army marching", 6: "A horse leaping a wooden fence", 7: "A deer leaping over a fallen log", 8: "A cheetah sprinting across the savannah", 9: "A scateboarder grinding a rail", 10: "A tornado spinning wildly across a plain", 11: "A spaceship entering hyperspace", 12: "A snake striking at prey", 13: "A surfer riding a massive wave", 14: "A spider weaving a web swiftly", 15: "A boxer throwing a powerful punch", 16: "A mantis shrimp striking with lightning speed", 17: "A waterfall crashing down a cliff", 18: "A squirrel leaping from tree to tree", 19: "A dragonfly zipping over a pond", 20: "A race car zooming on a track", 21: "A hammer striking a nail", 22: "A firework exploding in the sky", 23: "A lightning bolt striking a tree", 24: "A wolf pack running through snow", 25: "A dolphin leaping through waves", 26: "A python constricting its prey", 27: "A falcon catching prey mid-flight", 28: "A volcano sending ash into the sky", 29: "A jet ski speeding across a lake", 30: "A pelican diving for fish", 31: "A stallion rearing up and kicking", 32: "A jet plane banking sharply", 33: "A catapult launching a projectile", 34: "A jellyfish pulsating gracefully in water", 35: "A geyser erupting hot water into the air", 36: "A hummingbird darting between flowers", 37: "A squirrel darting between tree branches", 38: "A car drifting on a wet road", 39: "A hummingbird flicking its wings rapidly", 40: "A dragon breathing fire", 41: "A spider leaping to catch a fly", 42: "A spacecraft landing on Mars", 43: "A spaceship launching a probe", 44: "A speedboat racing across water", 45: "A cheetah twisting mid-run", 46: "A rocket booster separating mid-flight", 47: "A bumblebee buzzing between flowers", 48: "A snowboarder jumping off a ramp", 49: "A bison charging across the plains", 50: "A waterwheel turning in a river", 51: "A rocket landing vertically on a platform", 52: "A sea turtle swimming powerfully through waves", 53: "A mountain biker flying over a jump", 54: "A racehorse thundering down a track", 55: "A hawk diving towards the ground", 56: "A cobra flaring its hood", 57: "A horse rearing up wildly", 58: "A scorpion snapping its claws", 59: "A volcano erupting molten lava", 60: "A dragonfly skimming over water", 61: "A fire spreading quickly through a forest", 62: "A mountain goat scaling a steep cliff", 63: "A tornado swirling dust and debris", 64: "A whale spouting water from its blowhole", 65: "A falcon chasing a pigeon", 66: "A hummingbird hovering rapidly", 67: "A submarine surfacing rapidly", 68: "A comet streaking across the night sky", 69: "A butterfly fluttering among flowers", 70: "A wind turbine spinning in strong gusts", 71: "A parrot flapping its colorful wings", 72: "A drone zipping through a forest", 73: "A submarine launching a missile", 74: "A lightning storm illuminating the sky", 75: "A racecar making a tight turn", 76: "A skier carving through fresh powder", 77: "A lioness pouncing on prey", 78: "A submarine diving deep underwater", 79: "A snow leopard sprinting up a rocky slope", 80: "A waterfall cascading into a pool", 81: "A shark breaching to catch a seal", 82: "A rocket sled speeding along a track", 83: "A fighter jet breaking the sound barrier", 84: "A hawk flapping its wings powerfully", 85: "A river rapidly flooding a valley", 86: "A whale tail slapping the ocean surface", 87: "A glacier calving into the sea", 88: "A tornado lifting debris into the air", 89: "A gazelle bounding over the grasslands", 90: "A storm cloud swirling violently", 91: "A thunderstorm rolling over mountains", 92: "A tornado touching down in a field", 93: "A comet blazing through space", 94: "A condor soaring over mountains", 95: "A surfer cutting sharply on a wave", 96: "A caterpillar transforming into a butterfly", 97: "A horse sprinting across a beach", 98: "A glacier moving slowly but powerfully", 99: "A spider scuttling quickly across leaves", 100: "A glider soaring silently in the sky", 101: "A meteor blazing through the atmosphere", 102: "A panther stalking silently through the jungle", 103: "A helicopter lifting off from a helipad", 104: "A lava flow creeping down a mountainside", 105: "A peregrine falcon swooping toward the ground", 106: "A boxer dodging a punch and countering in slow motion", 107: "A sprinter exploding out of the starting blocks", 108: "A marathon runner pushing through exhaustion", 109: "A track runner crossing the finish line in victory", 110: "A rock climber hanging by one hand on a cliff face", 111: "A breakdancer spinning on their head under neon lights", 112: "A martial artist delivering a flying kick midair",
-};
-
-// --- DOM ELEMENTS ---
-let idx = 0, selected = null, responses = [], isPractice = true;
-const iframe = document.getElementById("vimeoFrame");
-const player = new Vimeo.Player(iframe);
-const $opts = document.getElementById("options");
-const $next = document.getElementById("nextBtn");
-const $pid = document.getElementById("pid");
-const $feedback = document.getElementById("feedback");
-const $quizScreen = document.getElementById("quiz-screen");
-const $startScreen = document.getElementById("start-screen");
-const $intermissionScreen = document.getElementById("intermission-screen");
-const $startBtn = document.getElementById("startBtn");
-const $startQuizBtn = document.getElementById("startQuizBtn");
-const $phaseTitle = document.getElementById("phaseTitle");
-
-// --- HELPER FUNCTIONS ---
-// ✅ FIX #1: Corrected the typo in the shuffle function (`a.j` became `a[j]`)
-function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
-
-async function generateStudyBank() {
-  console.log("Generating study bank...");
-  const response = await fetch('video_ids.json');
-  const allVideos = await response.json();
-  const videosByNoise = {};
-  for (const video of allVideos) {
-    if (!videosByNoise[video.noise]) {
-      videosByNoise[video.noise] = [];
-    }
-    videosByNoise[video.noise].push(video);
-  }
-  let selectedVideos = [];
-  for (const noiseLevel in videosByNoise) {
-    const group = videosByNoise[noiseLevel];
-    const randomSample = shuffle([...group]).slice(0, 5);
-    selectedVideos = selectedVideos.concat(randomSample);
-  }
-  const finalShuffledList = shuffle(selectedVideos);
-  const formattedBank = finalShuffledList.map(video => ({
-    id: video.id,
-    title: video.title,
-    base: video.base,
-    noise: video.noise,
-    correctAnswer: allAnswers[video.base]
-  }));
-  console.log(`Generated a quiz with ${formattedBank.length} videos.`);
-  return formattedBank;
-}
-
-// --- QUIZ LOGIC ---
-async function loadTrial() {
-  const currentBank = isPractice ? practiceBank : studyBank;
-  selected = null;
-  $next.disabled = true;
-  $feedback.textContent = "";
-
-  const trial = currentBank[idx];
-  $opts.innerHTML = "";
-
-  try {
-    await player.loadVideo(trial.id);
-    player.setLoop(true);
-    await player.ready();
-    player.play().catch(err => console.warn("Autoplay blocked:", err));
-  } catch (e) {
-    console.error("Error loading video:", e);
-  }
-
-  // ✅ FIX #2: Ensure wrong answers are unique to prevent duplicates
-  // Create a unique pool of potential wrong answers first
-  const wrongAnswerPool = [...new Set(Object.values(allAnswers).filter(x => x !== trial.correctAnswer))];
-  // Shuffle that unique pool and then slice to get 3 distractors
-  const wrongAnswers = shuffle(wrongAnswerPool).slice(0, 3);
-  
-  // The now-fixed shuffle() function will properly randomize the final list
-  const opts = shuffle([trial.correctAnswer, ...wrongAnswers]);
-
-  opts.forEach((label) => {
-    const d = document.createElement("div");
-    d.className = "option";
-    d.textContent = label;
-    d.onclick = () => {
-      document.querySelectorAll(".option").forEach((n) => n.classList.remove("selected"));
-      d.classList.add("selected");
-      selected = label;
-      $next.disabled = false;
-    };
-    $opts.appendChild(d);
-  });
-}
-
-$next.onclick = async () => {
-  const currentBank = isPractice ? practiceBank : studyBank;
-  const trial = currentBank[idx];
-  const isCorrect = selected === trial.correctAnswer;
-  if (isPractice) {
-    if (isCorrect) {
-      $feedback.textContent = "✅ Correct!";
-      $feedback.className = "feedback correct";
-      idx++;
-      if (idx < currentBank.length) {
+      $consentBtn.addEventListener("click", () => {
+        window.participantEmail = $emailInput.value.trim();
+        window.participantName = $fullName.value.trim();
+        window.screeningAnswers = screeningAnswers;
+        $consentScreen.style.display = "none";
+        document.getElementById("quiz-screen").style.display = "block";
+        isPractice = true;
+        idx = 0;
+        $phaseTitle.textContent = "Practice Round";
         loadTrial();
-      } else {
-        $quizScreen.style.display = "none";
-        $intermissionScreen.style.display = "block";
+      });
+
+      /* ---------- FIRESTORE ---------- */
+      window.createParticipantEntry = async function (pid) {
+        const doc = {
+          pid: pid,
+          fullName: window.participantName || null,
+          email: window.participantEmail || null,
+          screening: window.screeningAnswers || {},
+          startedAt: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          createdAt: serverTimestamp(),
+        };
+        const ref = await addDoc(collection(db, "participants"), doc);
+        return ref.id;
+      };
+
+      window.saveSingleResponse = async function (participantId, response) {
+        try {
+          await addDoc(collection(db, "participants", participantId, "responses"), { ...response, createdAt: serverTimestamp() });
+          return true;
+        } catch (e) {
+          console.error("Save error:", e);
+          return false;
+        }
+      };
+
+      /* ---------- QUIZ ---------- */
+      const practiceBank = [
+        { id: 1131847671, correctAnswer: "A Phoenix rising from the ashes" },
+        { id: 1131847430, correctAnswer: "A whale breaching the ocean surface" },
+        { id: 1131847476, correctAnswer: "A roller coaster plummeting down a steep track" }
+      ];
+
+      let studyBank = [];
+      const allAnswers = {
+        0:"A whale breaching the ocean surface",1:"A roller coaster plummeting down a steep track",2:"A kangaroo bounding across the outback",3:"A rocket launching into space",4:"A phoenix rising from ashes",5:"A fire ant army marching",6:"A horse leaping a wooden fence",7:"A deer leaping over a fallen log",8:"A cheetah sprinting across the savannah",9:"A skateboarder grinding a rail",10:"A tornado spinning wildly across a plain",11:"A spaceship entering hyperspace",12:"A snake striking at prey",13:"A surfer riding a massive wave",14:"A spider weaving a web swiftly",15:"A boxer throwing a powerful punch",16:"A mantis shrimp striking with lightning speed",17:"A waterfall crashing down a cliff",18:"A squirrel leaping from tree to tree",19:"A dragonfly zipping over a pond",20:"A race car zooming on a track",21:"A hammer striking a nail",22:"A firework exploding in the sky",23:"A lightning bolt striking a tree",24:"A wolf pack running through snow",25:"A dolphin leaping through waves",26:"A python constricting its prey",27:"A falcon catching prey mid-flight",28:"A volcano sending ash into the sky",29:"A jet ski speeding across a lake",30:"A pelican diving for fish",31:"A stallion rearing up and kicking",32:"A jet plane banking sharply",33:"A catapult launching a projectile",34:"A jellyfish pulsating gracefully in water",35:"A geyser erupting hot water into the air",36:"A hummingbird darting between flowers",37:"A squirrel darting between tree branches",38:"A car drifting on a wet road",39:"A hummingbird flicking its wings rapidly",40:"A dragon breathing fire",41:"A spider leaping to catch a fly",42:"A spacecraft landing on Mars",43:"A spaceship launching a probe",44:"A speedboat racing across water",45:"A cheetah twisting mid-run",46:"A rocket booster separating mid-flight",47:"A bumblebee buzzing between flowers",48:"A snowboarder jumping off a ramp",49:"A bison charging across the plains",50:"A waterwheel turning in a river",51:"A rocket landing vertically on a platform",52:"A sea turtle swimming powerfully through waves",53:"A mountain biker flying over a jump",54:"A racehorse thundering down a track",55:"A hawk diving towards the ground",56:"A cobra flaring its hood",57:"A horse rearing up wildly",58:"A scorpion snapping its claws",59:"A volcano erupting molten lava",60:"A dragonfly skimming over water",61:"A fire spreading quickly through a forest",62:"A mountain goat scaling a steep cliff",63:"A tornado swirling dust and debris",64:"A whale spouting water from its blowhole",65:"A falcon chasing a pigeon",66:"A hummingbird hovering rapidly",67:"A submarine surfacing rapidly",68:"A comet streaking across the night sky",69:"A butterfly fluttering among flowers",70:"A wind turbine spinning in strong gusts",71:"A parrot flapping its colorful wings",72:"A drone zipping through a forest",73:"A submarine launching a missile",74:"A lightning storm illuminating the sky",75:"A racecar making a tight turn",76:"A skier carving through fresh powder",77:"A lioness pouncing on prey",78:"A submarine diving deep underwater",79:"A snow leopard sprinting up a rocky slope",80:"A waterfall cascading into a pool",81:"A shark breaching to catch a seal",82:"A rocket sled speeding along a track",83:"A fighter jet breaking the sound barrier",84:"A hawk flapping its wings powerfully",85:"A river rapidly flooding a valley",86:"A whale tail slapping the ocean surface",87:"A glacier calving into the sea",88:"A tornado lifting debris into the air",89:"A gazelle bounding over the grasslands",90:"A storm cloud swirling violently",91:"A thunderstorm rolling over mountains",92:"A tornado touching down in a field",93:"A comet blazing through space",94:"A condor soaring over mountains",95:"A surfer cutting sharply on a wave",96:"A caterpillar transforming into a butterfly",97:"A horse sprinting across a beach",98:"A glacier moving slowly but powerfully",99:"A spider scuttling quickly across leaves",100:"A glider soaring silently in the sky",101:"A meteor blazing through the atmosphere",102:"A panther stalking silently through the jungle",103:"A helicopter lifting off from a helipad",104:"A lava flow creeping down a mountainside",105:"A peregrine falcon swooping toward the ground",106:"A boxer dodging a punch and countering in slow motion",107:"A sprinter exploding out of the starting blocks",108:"A marathon runner pushing through exhaustion",109:"A track runner crossing the finish line in victory",110:"A rock climber hanging by one hand on a cliff face",111:"A breakdancer spinning on their head under neon lights",112:"A martial artist delivering a flying kick midair"
+      };
+
+      let idx=0,selected=null,isPractice=true,participantDocId=null;
+      const iframe=document.getElementById("vimeoFrame");const player=new Vimeo.Player(iframe);
+      const $opts=document.getElementById("options");const $next=document.getElementById("nextBtn");
+      const $feedback=document.getElementById("feedback");const $quizScreen=document.getElementById("quiz-screen");
+      const $intermissionScreen=document.getElementById("intermission-screen");const $startQuizBtn=document.getElementById("startQuizBtn");
+      const $phaseTitle=document.getElementById("phaseTitle");const $counter=document.getElementById("counter");
+
+      function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+      async function generateStudyBank(){
+        const res=await fetch("video_ids.json");
+        const all=await res.json();
+        const byNoise={};
+        for(const v of all){if(!byNoise[v.noise])byNoise[v.noise]=[];byNoise[v.noise].push(v);}
+        const levels=Object.keys(byNoise).sort((a,b)=>a-b);
+        const sel=[];
+        for(const n of levels){const g=shuffle([...byNoise[n]]);sel.push(...g.slice(0,5));}
+        return shuffle(sel).map(v=>({id:v.id,title:v.title,base:v.base,noise:v.noise,correctAnswer:allAnswers[v.base]}));
       }
-    } else {
-      $feedback.textContent = "❌ Incorrect. Try again.";
-      $feedback.className = "feedback incorrect";
-    }
-    return;
-  }
-  responses.push({
-    video: `https://vimeo.com/${trial.id}`,
-    id: trial.id,
-    base: trial.base,
-    noise: trial.noise,
-    title: trial.title,
-    correctAnswer: trial.correctAnswer,
-    participantAnswer: selected,
-    isCorrect,
-    ts: new Date().toISOString()
-  });
-  idx++;
-  if (idx < currentBank.length) {
-    loadTrial();
-  } else {
-    $next.disabled = true;
-    $next.textContent = "Submitting...";
-    const payload = { pid: $pid.value || `p-${Date.now()}`, startedAt: responses[0]?.ts, responses };
-    try {
-      await window.submitResultsToFirestore(payload);
-      document.querySelector(".wrap").innerHTML = "<h1>Thanks!</h1><p>Your responses were submitted.</p>";
-    } catch (e) {
-      document.querySelector(".wrap").innerHTML = "<h1>Submission Failed</h1><p>There was an error submitting your responses. Please refresh and try again.</p>";
-    }
-  }
-};
 
-// --- EVENT LISTENERS ---
-$startBtn.onclick = async () => {
-  const pidValue = $pid.value.trim();
+      async function loadTrial(){
+        const current=isPractice?practiceBank:studyBank;selected=null;$next.disabled=true;$feedback.textContent="";
+        $counter.style.display=isPractice?"none":"block";if(!isPractice)$counter.textContent=`Question ${idx+1}/${current.length}`;
+        const t=current[idx];$opts.innerHTML="";
+        try{await player.loadVideo(t.id);player.setLoop(true);player.play().catch(()=>{});}catch(e){console.error(e);}
+        const wrongs=shuffle(Object.values(allAnswers).filter(x=>x!==t.correctAnswer)).slice(0,3);
+        const opts=shuffle([t.correctAnswer,...wrongs]);
+        opts.forEach(l=>{const d=document.createElement("div");d.className="option";d.textContent=l;d.onclick=()=>{document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));d.classList.add("selected");selected=l;$next.disabled=false;};$opts.appendChild(d);});
+      }
 
-  // --- Email Validation ---
-  // Check for non-empty input
-  if (!pidValue) {
-    alert("Please enter your school email address to continue.");
-    return;
-  }
+      $next.onclick=async()=>{const cur=isPractice?practiceBank:studyBank;const t=cur[idx];const correct=selected===t.correctAnswer;
+        if(isPractice){if(correct){$feedback.textContent="✅ Correct!";$feedback.className="feedback correct";idx++;if(idx<cur.length)loadTrial();else{$quizScreen.style.display="none";$intermissionScreen.style.display="block";}}else{$feedback.textContent="❌ Incorrect. Try again.";$feedback.className="feedback incorrect";}return;}
+        $next.disabled=true;$next.textContent="Saving...";const resp={video:`https://vimeo.com/${t.id}`,...t,participantAnswer:selected,isCorrect:correct,ts:new Date().toISOString()};
+        await window.saveSingleResponse(participantDocId,resp);idx++;if(idx<cur.length){$next.textContent="Next";loadTrial();}else{$quizScreen.innerHTML="<h1>Thanks!</h1><p>Your responses were submitted.</p>";}
+      };
 
-  // Basic email format check
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(pidValue)) {
-    alert("Please enter a valid email address.");
-    return;
-  }
-
-  // Optional: restrict to .edu or .lsu.edu
-  const allowedDomains = ["lsu.edu", "students.lsu.edu"]; // add more if needed
-  const domain = pidValue.split("@").pop().toLowerCase();
-  if (!allowedDomains.some(d => domain.endsWith(d))) {
-    alert("Please use your school email (e.g., ending in @lsu.edu).");
-    return;
-  }
-
-  // --- Continue if valid ---
-  isPractice = true;
-  idx = 0;
-  $startScreen.style.display = "none";
-  $quizScreen.style.display = "block";
-  $phaseTitle.textContent = "Practice Round";
-  loadTrial();
-};
-
-
-$startQuizBtn.onclick = async () => {
-  $startQuizBtn.textContent = "Generating Quiz...";
-  $startQuizBtn.disabled = true;
-  try {
-    studyBank = await generateStudyBank();
-    isPractice = false;
-    idx = 0;
-    responses = [];
-    $intermissionScreen.style.display = "none";
-    $quizScreen.style.display = "block";
-    $phaseTitle.textContent = "Main Quiz";
-    loadTrial();
-  } catch (error) {
-    console.error("Failed to generate the quiz:", error);
-    alert("Could not load the quiz data. Please make sure 'video_ids.json' is in the correct folder and try again.");
-    $startQuizBtn.textContent = "Start Real Quiz";
-    $startQuizBtn.disabled = false;
-  }
-};
-</script>
+      $startQuizBtn.onclick=async()=>{$startQuizBtn.disabled=true;$startQuizBtn.textContent="Initializing...";
+        try{const pid=window.participantEmail||`p-${Date.now()}`;participantDocId=await window.createParticipantEntry(pid);studyBank=await generateStudyBank();
+          isPractice=false;idx=0;$intermissionScreen.style.display="none";$quizScreen.style.display="block";$phaseTitle.textContent="Main Quiz";loadTrial();
+        }catch(e){alert("Error starting quiz: "+e.message);$startQuizBtn.disabled=false;$startQuizBtn.textContent="Start Real Quiz";}};
+    </script>
+  </body>
+</html>
