@@ -479,6 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAnswered = false;
   let isPractice = true;
   let responses = [];
+  let screeningAnswers = {}; // NEW: Variable to store screening answers
 
   // --- DOM Element References ---
   const $v = document.getElementById("video");
@@ -499,6 +500,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const $fullNameInput = document.getElementById("fullName");
   const $consentBtn = document.getElementById("consentBtn");
   const $nameError = document.getElementById("name-error");
+  // NEW: Screening question elements
+  const $screeningQuestions = document.getElementById("screening-questions");
+  const $screeningForm = document.getElementById("screening-form");
+  const $exclusionMessage = document.getElementById("exclusion-message");
+  const $mainConsentContent = document.getElementById("main-consent-content");
 
   // Check if elements exist
   if (
@@ -517,7 +523,11 @@ document.addEventListener("DOMContentLoaded", () => {
     !$consentScreen ||
     !$fullNameInput ||
     !$consentBtn ||
-    !$nameError // NEW: Check new elements
+    !$nameError || // NEW: Check new elements
+    !$screeningQuestions || // NEW
+    !$screeningForm || // NEW
+    !$exclusionMessage || // NEW
+    !$mainConsentContent // NEW
   ) {
     console.error(
       "Quiz script failed: Could not find one or more required DOM elements."
@@ -527,23 +537,56 @@ document.addEventListener("DOMContentLoaded", () => {
     return; // Stop execution
   }
 
-  // --- Email Validation Logic (Unchanged) ---
+  // --- Email Validation Logic (MODIFIED) ---
+  // Simple regex for email validation
+  const validateEmail = (email) => {
+    // A simple regex to check for something@something.something
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
   $pid.addEventListener("input", () => {
-    const email = $pid.value.trim().toLowerCase();
-    if (email.endsWith("@lsu.edu")) {
+    const email = $pid.value.trim();
+    if (validateEmail(email)) {
       $start.disabled = false;
       emailError.textContent = "";
     } else {
       $start.disabled = true;
-      if (email.length > 0 && !email.includes("@")) {
+      if (email.length > 0) {
         emailError.textContent = "Please enter a valid email address.";
-      } else if (email.length > 0) {
-        emailError.textContent = "Email must end with @lsu.edu";
       } else {
-        emailError.textContent = "";
+        emailError.textContent = ""; // Clear error if field is empty
       }
     }
   });
+
+  // --- MODIFIED: Screening Logic ---
+  $screeningForm.addEventListener("change", checkEligibility);
+
+  function checkEligibility() {
+    const q1 = document.querySelector('input[name="q1-age"]:checked');
+    const q2 = document.querySelector('input[name="q2-vision"]:checked');
+    const q3 = document.querySelector('input[name="q3-discomfort"]:checked');
+    const q4 = document.querySelector('input[name="q4-cognitive"]:checked');
+
+    // Only proceed if all questions are answered
+    if (!q1 || !q2 || !q3 || !q4) {
+      return;
+    }
+
+    // MODIFICATION: Store answers and show consent regardless of answers
+    screeningAnswers = {
+      q1_age: q1.value,
+      q2_vision: q2.value,
+      q3_discomfort: q3.value,
+      q4_cognitive: q4.value,
+    };
+
+    // Show main consent script, hide questions
+    $screeningQuestions.style.display = "none";
+    $exclusionMessage.style.display = "none"; // Ensure exclusion message is hidden
+    $mainConsentContent.style.display = "block";
+  }
+  // --- END MODIFIED Screening Logic ---
 
   // Full Name Validation Logic ---
   $fullNameInput.addEventListener("input", () => {
@@ -702,6 +745,7 @@ document.addEventListener("DOMContentLoaded", () => {
           pid: $pid.value,
           participantFullName: $fullNameInput.value.trim(), // Storing full name
           startedAt: responses[0]?.ts || new Date().toISOString(),
+          screening: screeningAnswers, // MODIFIED: Added screening answers
           responses,
         };
 

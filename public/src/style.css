@@ -84,10 +84,17 @@ input[type="text"] {
   box-sizing: border-box;
 }
 input[type="email"]:focus,
-input[type="text"]:focus { /* MODIFIED */
+input[type="text"]:focus {
+  /* MODIFIED */
   outline: none;
   border-color: #4f46e5; /* focus:border-indigo-500 */
   box-shadow: 0 0 0 2px #a5b4fc; /* focus:ring-2 focus:ring-indigo-500 */
+}
+
+/* NEW: Style for radio buttons from consent.html */
+input[type="radio"] {
+  margin-right: 0.5rem;
+  margin-left: 1rem;
 }
 
 /* MODIFIED: Changed ID to class for reusability */
@@ -107,7 +114,6 @@ input[type="text"]:focus { /* MODIFIED */
   display: none;
 }
 /* END NEW */
-
 
 /* Quiz Screen */
 #quiz-screen h1 {
@@ -194,4 +200,3 @@ video {
   text-align: center;
   margin-top: 1rem;
 }
-

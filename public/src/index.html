@@ -28,47 +28,174 @@
           </ul>
 
           <h2>Notes</h2>
-          <p>The study will take about 10-15 minutes.</p>
+          <p>The study will take about 30-45 minutes.</p>
         </div>
 
         <div class="start-actions">
-          <input id="pid" type="email" placeholder="LSU EMAIL REQUIRED" />
+          <input id="pid" type="email" placeholder="EMAIL REQUIRED" />
           <div id="email-error" class="error-message"></div>
-          <!-- MODIFIED: Changed button ID -->
           <button id="continueBtn" disabled>Continue</button>
         </div>
       </div>
 
       <!-- Consent Screen -->
       <div id="consent-screen" style="display: none">
-        <h1>Study Consent</h1>
-        <div class="intro">
-          <h2>Informed Consent</h2>
+        <!-- 3.1. Pre-screening Evaluation (NEW) -->
+        <div id="screening-questions">
+          <h1
+            class="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6"
+          >
+            Participant Screening
+          </h1>
+          <div class="intro">
+            <h2>Pre-screening Evaluation</h2>
+            <p>
+              Prior to participation, please complete this brief pre-screening
+              questionnaire to ensure eligibility.
+            </p>
+
+            <form
+              id="screening-form"
+              class="space-y-5 text-gray-700 dark:text-gray-300"
+            >
+              <!-- Question 1 -->
+              <div>
+                <p class="font-medium">1. Are you 18 years of age or older?</p>
+                <div>
+                  <input type="radio" id="q1-yes" name="q1-age" value="yes" />
+                  <label for="q1-yes">Yes</label>
+                  <input type="radio" id="q1-no" name="q1-age" value="no" />
+                  <label for="q1-no">No</label>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div>
+                <p class="font-medium">
+                  2. Do you have any uncorrected vision problems that make it
+                  difficult to view a computer screen clearly?
+                </p>
+                <div>
+                  <input
+                    type="radio"
+                    id="q2-yes"
+                    name="q2-vision"
+                    value="yes"
+                  />
+                  <label for="q2-yes">Yes</label>
+                  <input type="radio" id="q2-no" name="q2-vision" value="no" />
+                  <label for="q2-no">No</label>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div>
+                <p class="font-medium">
+                  3. Have you ever experienced severe discomfort, dizziness,
+                  photosensitivity, or motion sickness when viewing computer
+                  screens or visual stimuli?
+                </p>
+                <div>
+                  <input
+                    type="radio"
+                    id="q3-yes"
+                    name="q3-discomfort"
+                    value="yes"
+                  />
+                  <label for="q3-yes">Yes</label>
+                  <input
+                    type="radio"
+                    id="q3-no"
+                    name="q3-discomfort"
+                    value="no"
+                  />
+                  <label for="q3-no">No</label>
+                </div>
+              </div>
+
+              <!-- Question 4 -->
+              <div>
+                <p class="font-medium">
+                  4. Do you have any diagnosed neurological or cognitive
+                  conditions that could affect your ability to follow
+                  instructions or provide informed consent?
+                </p>
+                <div>
+                  <input
+                    type="radio"
+                    id="q4-yes"
+                    name="q4-cognitive"
+                    value="yes"
+                  />
+                  <label for="q4-yes">Yes</label>
+                  <input
+                    type="radio"
+                    id="q4-no"
+                    name="q4-cognitive"
+                    value="no"
+                  />
+                  <label for="q4-no">No</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Exclusion Message (NEW) -->
+        <div id="exclusion-message" style="display: none">
+          <p class="font-bold">Thank you for your interest.</p>
           <p>
-            Please read the following information carefully before deciding to
-            participate.
-          </p>
-          <ul>
-            <li>Your participation in this research study is voluntary.</li>
-            <li>Your data will be kept anonymous.</li>
-            <li>
-              You may stop your participation at any time by closing this
-              browser window.
-            </li>
-          </ul>
-          <p class="consent-agreement">
-            By typing your full name below, you agree that you are 18 years of
-            age or older and consent to participate in this study.
+            Based on your answers, you are not eligible to participate in this
+            study. This is to ensure participant safety and data quality. We
+            appreciate your time.
           </p>
         </div>
-        <div class="start-actions">
-          <input id="fullName" type="text" placeholder="Type your full name" />
-          <div id="name-error" class="error-message"></div>
-          <button id="consentBtn" disabled>Agree & Start Practice</button>
+
+        <!-- Main Consent Content (Modified to be hidden initially) -->
+        <div id="main-consent-content" style="display: none">
+          <h1>Study Consent</h1>
+          <div class="intro">
+            <h2>Informed Consent</h2>
+            <p>
+              You are invited to take part in a study about how people recognize
+              motion. You will view about 50 short motion videos of random dots
+              and choose which description fits best.
+            </p>
+            <!-- Replaced old list with new consent script details -->
+            <ul class="consent-details">
+              <li><strong>Time:</strong> 30–45 minutes.</li>
+              <li>
+                <strong>Risks:</strong> Minimal, possible mild eye fatigue. You
+                may stop at any time.
+              </li>
+              <li>
+                <strong>Confidentiality:</strong> Responses are anonymous.
+                Signed consent forms will be stored securely for six months
+                after data collection and then destroyed.
+              </li>
+              <li>
+                <strong>Voluntary Participation:</strong> You may withdraw at
+                any time without penalty.
+              </li>
+            </ul>
+            <p class="consent-agreement">
+              By typing your full name below, you agree that you are 18 years of
+              age or older and consent to participate in this study.
+            </p>
+          </div>
+          <div class="start-actions">
+            <input
+              id="fullName"
+              type="text"
+              placeholder="Type your full name"
+            />
+            <div id="name-error" class="error-message"></div>
+            <button id="consentBtn" disabled>Agree & Start Practice</button>
+          </div>
         </div>
       </div>
 
-      <!-- Intermission Screen -->
+      <!-- Intermission Screen (Unchanged) -->
       <div id="intermission-screen" style="display: none">
         <h1>Practice Complete</h1>
         <div class="intro">
@@ -90,7 +217,7 @@
         </div>
       </div>
 
-      <!-- Quiz Screen -->
+      <!-- Quiz Screen (Unchanged) -->
       <div id="quiz-screen" style="display: none">
         <h1>Video Quiz Study</h1>
         <div class="video-box">
