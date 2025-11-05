@@ -462,15 +462,46 @@
 
       function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-      async function generateStudyBank(){
-        const res=await fetch("video_ids.json");
-        const all=await res.json();
-        const byNoise={};
-        for(const v of all){if(!byNoise[v.noise])byNoise[v.noise]=[];byNoise[v.noise].push(v);}
-        const levels=Object.keys(byNoise).sort((a,b)=>a-b);
-        const sel=[];
-        for(const n of levels){const g=shuffle([...byNoise[n]]);sel.push(...g.slice(0,5));}
-        return shuffle(sel).map(v=>({id:v.id,title:v.title,base:v.base,noise:v.noise,correctAnswer:allAnswers[v.base]}));
+      async function generateStudyBank() {
+        const res = await fetch("video_ids.json");
+        const all = await res.json();
+
+        // Group videos by noise level
+        const byNoise = {};
+        for (const v of all) {
+          if (!byNoise[v.noise]) byNoise[v.noise] = [];
+          byNoise[v.noise].push(v);
+        }
+
+        const levels = Object.keys(byNoise).sort((a, b) => a - b);
+        const usedBases = new Set(); // 🚀 Track base videos that have already been used
+        const selected = [];
+
+        for (const n of levels) {
+          const group = shuffle([...byNoise[n]]);
+          const chosen = [];
+
+          for (const v of group) {
+            if (!usedBases.has(v.base)) {
+              usedBases.add(v.base);
+              chosen.push(v);
+            }
+            if (chosen.length >= 5) break; // only take 5 per noise level
+          }
+
+          selected.push(...chosen);
+        }
+
+        // Final shuffle before returning
+        return shuffle(
+          selected.map(v => ({
+            id: v.id,
+            title: v.title,
+            base: v.base,
+            noise: v.noise,
+            correctAnswer: allAnswers[v.base],
+          }))
+        );
       }
 
       async function loadTrial(){
