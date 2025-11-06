@@ -163,8 +163,33 @@
           <div class="start-actions">
             <input id="fullName" type="text" placeholder="Type your full name" />
             <div id="name-error" class="error-message"></div>
-            <button id="consentBtn" disabled>Agree & Start Practice</button>
+            <button id="consentBtn" disabled>Agree & Continue</button>
           </div>
+        </div>
+      </div>
+
+      <!-- 🆕 PRE-STUDY INFO SCREEN -->
+      <div id="prestudy-screen" style="display:none">
+        <h1>Before You Begin</h1>
+        <div class="intro">
+          <h2>Important Information</h2>
+          <ul>
+            <li>
+              ✅ You may use <strong>translation software</strong> if English is
+              not your first language. Please ensure you fully understand each
+              question before answering.
+            </li>
+            <li>
+              🎥 You will see videos with
+              <strong>different noise levels</strong> — some clips are easier to
+              interpret, and others are intentionally harder. This variation
+              helps us study how visual noise affects recognition.
+            </li>
+          </ul>
+          <p>Click “Start Practice Round” when you are ready to begin.</p>
+        </div>
+        <div class="actions">
+          <button id="beginPracticeBtn">Start Practice Round</button>
         </div>
       </div>
 
@@ -235,7 +260,6 @@
       // Validate email
       $emailInput.addEventListener("input", () => {
         const v = $emailInput.value.trim();
-        // ✅ fixed regex
         const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
         $emailError.textContent = ok ? "" : "Enter a valid email.";
         $continueBtn.disabled = !ok;
@@ -255,7 +279,11 @@
           cognitive: $screeningForm.querySelector("input[name='q4-cognitive']:checked")?.value,
         };
         if (Object.values(screeningAnswers).some(a => !a)) return;
-        const ineligible = screeningAnswers.age === "no" || screeningAnswers.vision === "yes" || screeningAnswers.discomfort === "yes" || screeningAnswers.cognitive === "yes";
+        const ineligible =
+          screeningAnswers.age === "no" ||
+          screeningAnswers.vision === "yes" ||
+          screeningAnswers.discomfort === "yes" ||
+          screeningAnswers.cognitive === "yes";
         if (ineligible) {
           $screeningForm.style.display = "none";
           $exclusionMessage.style.display = "block";
@@ -275,11 +303,18 @@
         }
       });
 
+      // Consent → Pre-study
       $consentBtn.addEventListener("click", () => {
         window.participantEmail = $emailInput.value.trim();
         window.participantName = $fullName.value.trim();
         window.screeningAnswers = screeningAnswers;
         $consentScreen.style.display = "none";
+        document.getElementById("prestudy-screen").style.display = "block";
+      });
+
+      // Pre-study → Practice
+      document.getElementById("beginPracticeBtn").addEventListener("click", () => {
+        document.getElementById("prestudy-screen").style.display = "none";
         document.getElementById("quiz-screen").style.display = "block";
         isPractice = true;
         idx = 0;
@@ -304,7 +339,10 @@
 
       window.saveSingleResponse = async function (participantId, response) {
         try {
-          await addDoc(collection(db, "participants", participantId, "responses"), { ...response, createdAt: serverTimestamp() });
+          await addDoc(
+            collection(db, "participants", participantId, "responses"),
+            { ...response, createdAt: serverTimestamp() }
+          );
           return true;
         } catch (e) {
           console.error("Save error:", e);
@@ -316,7 +354,7 @@
       const practiceBank = [
         { id: 1132239962, correctAnswer: "A phoenix rising from the ashes" },
         { id: 1132237659, correctAnswer: "A whale breaching the ocean surface" },
-        { id: 1132238377, correctAnswer: "A roller coaster plummeting down a steep track" }
+        { id: 1132238377, correctAnswer: "A roller coaster plummeting down a steep track" },
       ];
 
       let studyBank = [];
@@ -453,48 +491,54 @@
           129: "A gymnast landing a perfect dismount"
         };
 
-      let idx=0,selected=null,isPractice=true,participantDocId=null;
-      const iframe=document.getElementById("vimeoFrame");const player=new Vimeo.Player(iframe);
-      const $opts=document.getElementById("options");const $next=document.getElementById("nextBtn");
-      const $feedback=document.getElementById("feedback");const $quizScreen=document.getElementById("quiz-screen");
-      const $intermissionScreen=document.getElementById("intermission-screen");const $startQuizBtn=document.getElementById("startQuizBtn");
-      const $phaseTitle=document.getElementById("phaseTitle");const $counter=document.getElementById("counter");
+      let idx = 0,
+        selected = null,
+        isPractice = true,
+        participantDocId = null;
+      const iframe = document.getElementById("vimeoFrame");
+      const player = new Vimeo.Player(iframe);
+      const $opts = document.getElementById("options");
+      const $next = document.getElementById("nextBtn");
+      const $feedback = document.getElementById("feedback");
+      const $quizScreen = document.getElementById("quiz-screen");
+      const $intermissionScreen = document.getElementById("intermission-screen");
+      const $startQuizBtn = document.getElementById("startQuizBtn");
+      const $phaseTitle = document.getElementById("phaseTitle");
+      const $counter = document.getElementById("counter");
 
-      function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+      function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
 
       async function generateStudyBank() {
         const res = await fetch("video_ids.json");
         const all = await res.json();
-
-        // Group videos by noise level
         const byNoise = {};
         for (const v of all) {
           if (!byNoise[v.noise]) byNoise[v.noise] = [];
           byNoise[v.noise].push(v);
         }
-
         const levels = Object.keys(byNoise).sort((a, b) => a - b);
-        const usedBases = new Set(); // 🚀 Track base videos that have already been used
+        const usedBases = new Set();
         const selected = [];
-
         for (const n of levels) {
           const group = shuffle([...byNoise[n]]);
           const chosen = [];
-
           for (const v of group) {
             if (!usedBases.has(v.base)) {
               usedBases.add(v.base);
               chosen.push(v);
             }
-            if (chosen.length >= 5) break; // only take 5 per noise level
+            if (chosen.length >= 5) break;
           }
-
           selected.push(...chosen);
         }
-
-        // Final shuffle before returning
         return shuffle(
-          selected.map(v => ({
+          selected.map((v) => ({
             id: v.id,
             title: v.title,
             base: v.base,
@@ -504,26 +548,102 @@
         );
       }
 
-      async function loadTrial(){
-        const current=isPractice?practiceBank:studyBank;selected=null;$next.disabled=true;$feedback.textContent="";
-        $counter.style.display=isPractice?"none":"block";if(!isPractice)$counter.textContent=`Question ${idx+1}/${current.length}`;
-        const t=current[idx];$opts.innerHTML="";
-        try{await player.loadVideo(t.id);player.setLoop(true);player.play().catch(()=>{});}catch(e){console.error(e);}
-        const wrongs=shuffle(Object.values(allAnswers).filter(x=>x!==t.correctAnswer)).slice(0,3);
-        const opts=shuffle([t.correctAnswer,...wrongs]);
-        opts.forEach(l=>{const d=document.createElement("div");d.className="option";d.textContent=l;d.onclick=()=>{document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));d.classList.add("selected");selected=l;$next.disabled=false;};$opts.appendChild(d);});
+      async function loadTrial() {
+        const current = isPractice ? practiceBank : studyBank;
+        selected = null;
+        $next.disabled = true;
+        $feedback.textContent = "";
+        $counter.style.display = isPractice ? "none" : "block";
+        if (!isPractice)
+          $counter.textContent = `Question ${idx + 1}/${current.length}`;
+        const t = current[idx];
+        $opts.innerHTML = "";
+        try {
+          await player.loadVideo(t.id);
+          player.setLoop(true);
+          player.play().catch(() => {});
+        } catch (e) {
+          console.error(e);
+        }
+        const wrongs = shuffle(
+          Object.values(allAnswers).filter((x) => x !== t.correctAnswer)
+        ).slice(0, 3);
+        const opts = shuffle([t.correctAnswer, ...wrongs]);
+        opts.forEach((l) => {
+          const d = document.createElement("div");
+          d.className = "option";
+          d.textContent = l;
+          d.onclick = () => {
+            document
+              .querySelectorAll(".option")
+              .forEach((o) => o.classList.remove("selected"));
+            d.classList.add("selected");
+            selected = l;
+            $next.disabled = false;
+          };
+          $opts.appendChild(d);
+        });
       }
 
-      $next.onclick=async()=>{const cur=isPractice?practiceBank:studyBank;const t=cur[idx];const correct=selected===t.correctAnswer;
-        if(isPractice){if(correct){$feedback.textContent="✅ Correct!";$feedback.className="feedback correct";idx++;if(idx<cur.length)loadTrial();else{$quizScreen.style.display="none";$intermissionScreen.style.display="block";}}else{$feedback.textContent="❌ Incorrect. Try again.";$feedback.className="feedback incorrect";}return;}
-        $next.disabled=true;$next.textContent="Saving...";const resp={video:`https://vimeo.com/${t.id}`,...t,participantAnswer:selected,isCorrect:correct,ts:new Date().toISOString()};
-        await window.saveSingleResponse(participantDocId,resp);idx++;if(idx<cur.length){$next.textContent="Next";loadTrial();}else{$quizScreen.innerHTML="<h1>Thanks!</h1><p>Your responses were submitted.</p>";}
+      $next.onclick = async () => {
+        const cur = isPractice ? practiceBank : studyBank;
+        const t = cur[idx];
+        const correct = selected === t.correctAnswer;
+        if (isPractice) {
+          if (correct) {
+            $feedback.textContent = "✅ Correct!";
+            $feedback.className = "feedback correct";
+            idx++;
+            if (idx < cur.length) loadTrial();
+            else {
+              $quizScreen.style.display = "none";
+              $intermissionScreen.style.display = "block";
+            }
+          } else {
+            $feedback.textContent = "❌ Incorrect. Try again.";
+            $feedback.className = "feedback incorrect";
+          }
+          return;
+        }
+        $next.disabled = true;
+        $next.textContent = "Saving...";
+        const resp = {
+          video: `https://vimeo.com/${t.id}`,
+          ...t,
+          participantAnswer: selected,
+          isCorrect: correct,
+          ts: new Date().toISOString(),
+        };
+        await window.saveSingleResponse(participantDocId, resp);
+        idx++;
+        if (idx < cur.length) {
+          $next.textContent = "Next";
+          loadTrial();
+        } else {
+          $quizScreen.innerHTML =
+            "<h1>Thanks!</h1><p>Your responses were submitted.</p>";
+        }
       };
 
-      $startQuizBtn.onclick=async()=>{$startQuizBtn.disabled=true;$startQuizBtn.textContent="Initializing...";
-        try{const pid=window.participantEmail||`p-${Date.now()}`;participantDocId=await window.createParticipantEntry(pid);studyBank=await generateStudyBank();
-          isPractice=false;idx=0;$intermissionScreen.style.display="none";$quizScreen.style.display="block";$phaseTitle.textContent="Main Quiz";loadTrial();
-        }catch(e){alert("Error starting quiz: "+e.message);$startQuizBtn.disabled=false;$startQuizBtn.textContent="Start Real Quiz";}};
+      $startQuizBtn.onclick = async () => {
+        $startQuizBtn.disabled = true;
+        $startQuizBtn.textContent = "Initializing...";
+        try {
+          const pid = window.participantEmail || `p-${Date.now()}`;
+          participantDocId = await window.createParticipantEntry(pid);
+          studyBank = await generateStudyBank();
+          isPractice = false;
+          idx = 0;
+          $intermissionScreen.style.display = "none";
+          $quizScreen.style.display = "block";
+          $phaseTitle.textContent = "Main Quiz";
+          loadTrial();
+        } catch (e) {
+          alert("Error starting quiz: " + e.message);
+          $startQuizBtn.disabled = false;
+          $startQuizBtn.textContent = "Start Real Quiz";
+        }
+      };
     </script>
   </body>
 </html>
